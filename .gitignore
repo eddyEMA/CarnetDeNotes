@@ -4,3 +4,5 @@
 *.jar
 *.war
 *.ear
+/CarnetDeNotes/dist/
+/CarnetDeNotes/build/
