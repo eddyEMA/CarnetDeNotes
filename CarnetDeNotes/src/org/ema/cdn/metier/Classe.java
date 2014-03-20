@@ -11,5 +11,23 @@ package org.ema.cdn.metier;
  * @author Eddy
  */
 public class Classe {
+    private int idClasse;
+    private String libelleClasse;
+
+    public int getIdClasse() {
+        return idClasse;
+    }
+
+    public String getLibelleClasse() {
+        return libelleClasse;
+    }
+
+    public void setIdClasse(int idClasse) {
+        this.idClasse = idClasse;
+    }
+
+    public void setLibelleClasse(String libelleClasse) {
+        this.libelleClasse = libelleClasse;
+    }
     
 }
