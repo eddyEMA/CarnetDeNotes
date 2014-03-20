@@ -13,7 +13,9 @@ package org.ema.cdn.metier;
 public class Classe {
     private int idClasse;
     private String libelleClasse;
-
+    private Professeur professeurPrincipal;
+    private Eleve effectif[];
+    private Cours emploiTemps;
     public int getIdClasse() {
         return idClasse;
     }

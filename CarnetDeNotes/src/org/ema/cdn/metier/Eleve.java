@@ -15,7 +15,8 @@ public class Eleve {
     private String nomEleve;
     private String prenomEleve;
     private String dateDeNaissanceEleve;
-
+    private Classe classeEleve;
+    
     public int getINE() {
         return INE;
     }

@@ -11,8 +11,8 @@ package org.ema.cdn.metier;
  * @author Eddy
  */
 public class Main {
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.print("Hello World !");
-	}
+	}*/
 }

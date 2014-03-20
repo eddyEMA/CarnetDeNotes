@@ -14,7 +14,7 @@ public class Professeur {
     private int idProfesseur;
     private String nomProfesseur;
     private String prenomProfesseur;
-
+    private Cours emploiDuTemps [];
     public int getIdProfesseur() {
         return idProfesseur;
     }

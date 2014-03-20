@@ -13,7 +13,7 @@ package org.ema.cdn.metier;
 public class Matiere {
     private int idMatiere;
     private String libelleMatiere;
-
+    private Professeur enseignant [];
     public int getIdMatiere() {
         return idMatiere;
     }
