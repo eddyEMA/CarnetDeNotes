@@ -1,0 +1,27 @@
+# Required metadata
+sonar.projectKey=Project:CarnetDeNotes
+sonar.projectName=Carnet de Notes
+sonar.projectVersion=1.0
+ 
+# Path to the parent source code directory.
+# Path is relative to the sonar-project.properties file. Replace "\" by "/" on Windows.
+# Since SonarQube 4.2, this property is optional. If not set, SonarQube starts looking for source code
+# from the directory containing the sonar-project.properties file.
+sonar.sources=src
+
+# path to project libraries (optional)
+# sonar.libraries=tests/lib/junit-3.8.2.jar
+
+# The value of the property must be the key of the language.
+sonar.language=java
+ 
+# Encoding of the source code
+sonar.sourceEncoding=UTF-8
+ 
+# Additional parameters
+sonar.my.property=value
+
+#Uncomment those lines if some features of java 5 or java 6 like annotations, enum, ...
+#are used in the source code to be analysed
+sonar.java.source=1.7
+sonar.java.target=1.7
