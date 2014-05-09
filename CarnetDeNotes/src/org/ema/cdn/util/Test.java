@@ -1,15 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package org.ema.cdn.util;
 
-/**
- *
- * @author Eddy
- */
-public class Test {
-    
+import java.sql.*;
+
+public class Test{
+    public static void main(String[] args) throws SQLException{
+        AccesBDD BDD = new AccesBDD();
+        BDD.AfficheRequete();
+        int nombreResultat = BDD.NombreLignes();
+        System.out.println("\n\nNombre de resultat trouvé : " + nombreResultat);
+        
+    }
 }

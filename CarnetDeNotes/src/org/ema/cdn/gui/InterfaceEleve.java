@@ -53,7 +53,7 @@ public class InterfaceEleve extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(onglet1);
 
-        onglet0.addTab("tab1", jScrollPane1);
+        onglet0.addTab("Matière 1", jScrollPane1);
 
         onglet2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -68,7 +68,7 @@ public class InterfaceEleve extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(onglet2);
 
-        onglet0.addTab("tab2", jScrollPane2);
+        onglet0.addTab("Matière 2", jScrollPane2);
 
         onglet3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -83,16 +83,13 @@ public class InterfaceEleve extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(onglet3);
 
-        onglet0.addTab("tab3", jScrollPane3);
+        onglet0.addTab("Matière 3", jScrollPane3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(onglet0, javax.swing.GroupLayout.DEFAULT_SIZE, 1026, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(onglet0, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1046, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
