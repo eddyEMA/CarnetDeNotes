@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.*;
 
 /**
  *
@@ -24,7 +25,7 @@ public class AccesBDD {
     public AccesBDD(){
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            this.connection = DriverManager.getConnection("jdbc:mysql://localhost/cdn?" + "user=eddy&password=eddy");
+            this.connection = DriverManager.getConnection("jdbc:mysql://localhost/cdn?" + "user=dorian&password=dorian");
             this.statement = this.connection.createStatement();
             System.out.println("Ca marche");
         }
@@ -32,9 +33,18 @@ public class AccesBDD {
             System.out.println("Connection Impossible");
         }
     }
-    void Requete() throws SQLException{
+    
+//------------------------------------------------------------------------------
+    public Vector Requete() throws SQLException{
         this.result = this.statement.executeQuery("SELECT * FROM cdn.eleve");
+        Vector nomPrenomEleve = new Vector ();
+       while(this.result.next()){
+        nomPrenomEleve.add(this.result.getString("nomEleve"));
+       }
+        return nomPrenomEleve;
     }
+    
+//------------------------------------------------------------------------------
     void AfficheRequete() throws SQLException
     {
         this.Requete();
@@ -42,6 +52,8 @@ public class AccesBDD {
             System.out.println("Nom : " + this.result.getString("nomEleve") + "  Prenom : " + this.result.getString("prenomEleve") + "  Date de naissance : " + this.result.getDate("dateDeNaissanceEleve"));
         }
     }
+    
+//------------------------------------------------------------------------------
     int NombreLignes () throws SQLException{
         this.Requete();
         int nombreLigne = 0;  

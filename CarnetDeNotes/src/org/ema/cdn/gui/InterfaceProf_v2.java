@@ -7,8 +7,13 @@
 package org.ema.cdn.gui;
 
 import java.awt.HeadlessException;
+import java.sql.SQLException;
 import javax.swing.JComponent;
 import javax.swing.JTabbedPane;
+import org.ema.cdn.util.AccesBDD;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,8 +25,9 @@ public class InterfaceProf_v2 extends javax.swing.JFrame {
     /**
      * Creates new form InterfaceProf_v2
      */
-    public InterfaceProf_v2() {
+    public InterfaceProf_v2() throws SQLException {
         initComponents();
+        recupNoms();
     }
 
     /**
@@ -47,35 +53,6 @@ public class InterfaceProf_v2 extends javax.swing.JFrame {
 
         onglet1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null}
             },
             new String [] {
@@ -90,35 +67,6 @@ public class InterfaceProf_v2 extends javax.swing.JFrame {
 
         onglet2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null}
             },
             new String [] {
@@ -131,35 +79,6 @@ public class InterfaceProf_v2 extends javax.swing.JFrame {
 
         onglet3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null}
             },
             new String [] {
@@ -221,11 +140,38 @@ public class InterfaceProf_v2 extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new InterfaceProf_v2().setVisible(true);
+                try {
+                    new InterfaceProf_v2().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(InterfaceProf_v2.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
-
+//------------------------------------------------------------------------------  
+    void recupNoms() throws SQLException{
+        AccesBDD bdd = new AccesBDD();
+        
+            //onglet1.add(bdd.Requete().elementAt(0), 5);
+        
+            onglet1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {bdd.Requete().elementAt(0), null, null, null, null, null, null}
+            },
+            new String [] {
+                "Elève", "Test 1", "Test 2", "Test 3", "Test 4", "Partiel", "Moyenne"
+            }
+            ));
+                        onglet1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {bdd.Requete().elementAt(0), null, null, null, null, null, null}
+            },
+            new String [] {
+                "Elève", "Test 1", "Test 2", "Test 3", "Test 4", "Partiel", "Moyenne"
+            }
+            ));
+    }
+//------------------------------------------------------------------------------
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
