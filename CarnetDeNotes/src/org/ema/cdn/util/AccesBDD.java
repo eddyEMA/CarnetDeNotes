@@ -24,7 +24,7 @@ public class AccesBDD {
     public AccesBDD(){
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            this.connection = DriverManager.getConnection("jdbc:mysql://localhost/cdn?" + "user=eddy&password=eddy");
+            this.connection = DriverManager.getConnection("jdbc:mysql://localhost/cdn?" + "user=dorian&password=dorian");
             this.statement = this.connection.createStatement();
             System.out.println("Ca marche");
         }
