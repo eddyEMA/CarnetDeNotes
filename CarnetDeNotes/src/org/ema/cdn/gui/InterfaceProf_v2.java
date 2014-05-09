@@ -34,59 +34,16 @@ public class InterfaceProf_v2 extends javax.swing.JFrame {
     private void initComponents() {
 
         onglet0 = new javax.swing.JTabbedPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        onglet1 = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         onglet2 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         onglet3 = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        onglet1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         onglet0.setBorder(javax.swing.BorderFactory.createTitledBorder("Joel Vlasak : Langage C"));
-
-        onglet1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Elève", "Test 1", "Test 2", "Test 3", "Test 4", "Partiel", "Moyenne"
-            }
-        ));
-        onglet1.setColumnSelectionAllowed(true);
-        jScrollPane1.setViewportView(onglet1);
-        onglet1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-
-        onglet0.addTab("INFRES 6", jScrollPane1);
 
         onglet2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -169,6 +126,49 @@ public class InterfaceProf_v2 extends javax.swing.JFrame {
         jScrollPane2.setViewportView(onglet3);
 
         onglet0.addTab("INFRES 4", jScrollPane2);
+
+        onglet1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Elève", "Test 1", "Test 2", "Test 3", "Test 4", "Partiel", "Moyenne"
+            }
+        ));
+        onglet1.setColumnSelectionAllowed(true);
+        jScrollPane1.setViewportView(onglet1);
+        onglet1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        onglet0.addTab("INFRES 6", jScrollPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

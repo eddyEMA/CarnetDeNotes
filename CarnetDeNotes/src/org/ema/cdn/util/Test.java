@@ -8,6 +8,6 @@ public class Test{
         BDD.AfficheRequete();
         int nombreResultat = BDD.NombreLignes();
         System.out.println("\n\nNombre de resultat trouvé : " + nombreResultat);
-        
+        BDD.NombreLignes();
     }
 }
