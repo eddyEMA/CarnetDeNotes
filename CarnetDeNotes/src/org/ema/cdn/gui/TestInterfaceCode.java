@@ -24,7 +24,7 @@ import org.ema.cdn.metier.AccesBDD;
  */
 public class TestInterfaceCode extends JFrame {
 
-  public TestInterfaceCode(){
+//  public TestInterfaceCode(){
 //    this.setLocationRelativeTo(null);
 //    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //    this.setTitle("INFRES 6");
@@ -52,7 +52,7 @@ public class TestInterfaceCode extends JFrame {
 //    //Sinon les titres des colonnes ne s'afficheront pas !
 //    this.getContentPane().add(new JScrollPane(tableau));
 
-  }   
+//  }   
 //public String recupNom(int index){
 //    AccesBDD bdd = new AccesBDD();
 //    String nom = "ERROR";
@@ -127,5 +127,5 @@ public class TestInterfaceCode extends JFrame {
     frame.setSize(400,300);
     frame.setVisible(true);
           
-  }   
+}
 }
