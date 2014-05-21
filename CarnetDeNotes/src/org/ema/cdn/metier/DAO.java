@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package org.ema.cdn.util;
+package org.ema.cdn.metier;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;

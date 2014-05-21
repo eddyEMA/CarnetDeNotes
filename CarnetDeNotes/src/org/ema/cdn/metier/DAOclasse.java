@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-package org.ema.cdn.util;
+package org.ema.cdn.metier;
 
 /**
  *
  * @author eddy
  */
-public class DAOepreuve {
+public class DAOclasse {
     
 }

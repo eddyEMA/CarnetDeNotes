@@ -10,6 +10,6 @@ package org.ema.cdn.gui;
  *
  * @author eddy
  */
-public class Tableau {
+public class FenetreLogin {
     
 }

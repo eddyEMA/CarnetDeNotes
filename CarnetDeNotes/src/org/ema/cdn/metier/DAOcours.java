@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-package org.ema.cdn.gui;
+package org.ema.cdn.metier;
 
 /**
  *
  * @author eddy
  */
-public class Tableau {
+public class DAOcours {
     
 }

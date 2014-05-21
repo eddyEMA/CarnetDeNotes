@@ -11,7 +11,7 @@ import java.awt.HeadlessException;
 import java.sql.SQLException;
 import javax.swing.JComponent;
 import javax.swing.JTabbedPane;
-import org.ema.cdn.util.AccesBDD;
+import org.ema.cdn.metier.AccesBDD;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
