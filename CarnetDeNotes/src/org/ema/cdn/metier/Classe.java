@@ -16,6 +16,7 @@ public class Classe {
     private Professeur professeurPrincipal;
     private Eleve effectif[];
     private Cours emploiTemps;
+    
     public int getIdClasse() {
         return idClasse;
     }

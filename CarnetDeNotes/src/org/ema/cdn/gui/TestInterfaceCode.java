@@ -57,7 +57,7 @@ public class TestInterfaceCode extends JFrame {
 //    AccesBDD bdd = new AccesBDD();
 //    String nom = "ERROR";
 //      try {
-//          nom = (String) bdd.requeteNom().elementAt(index);
+//          nom =  bdd.requeteNom().elementAt(index);
 //      } catch (SQLException ex) {
 //          Logger.getLogger(TestInterfaceCode.class.getName()).log(Level.SEVERE, null, ex);
 //      }

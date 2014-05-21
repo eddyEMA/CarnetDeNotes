@@ -18,8 +18,8 @@ import java.util.*;
 
 public abstract class DAO {
     public Connection connection = AccesBDD.connectionBDD();
-    public abstract Object chercher();
-    public abstract Object creer();
-    public abstract Object mettreAjour();
-    public abstract Object supprimer();
+    public abstract Object chercher(int id);
+    public abstract Object creer(String nom, String prenom, int typePersonne);
+    public abstract Object mettreAjour(int id);
+    public abstract Object supprimer(int id);
 }

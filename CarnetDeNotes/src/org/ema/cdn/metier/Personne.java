@@ -8,11 +8,14 @@ package org.ema.cdn.metier;
 
 /**
  *
- * @author Eddy
+ * @author eddy
  */
-public class Professeur extends Personne{
-    public Professeur(String nomPersonne, String prenomPersonne){
-        this.nom = nomPersonne;
-        this.prenom = prenomPersonne;
+public class Personne {
+    protected String nom;
+    protected String prenom;
+    protected int idPersonne;
+    protected int identifiantPersonne;
+    
+    public Personne(){
     }
 }
