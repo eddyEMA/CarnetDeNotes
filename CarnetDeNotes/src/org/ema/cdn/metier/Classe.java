@@ -13,24 +13,36 @@ package org.ema.cdn.metier;
 public class Classe {
     private int idClasse;
     private String libelleClasse;
-    private Professeur professeurPrincipal;
-    private Eleve effectif[];
-    private Cours emploiTemps;
-    
-    public int getIdClasse() {
-        return idClasse;
+    private int idProfesseurClasse;
+    public Classe(){
+    }
+    public Classe(String libelleClasse, int idProfesseurClasse){
+        this.libelleClasse = libelleClasse;
+        this.idProfesseurClasse = idProfesseurClasse;
     }
 
-    public String getLibelleClasse() {
-        return libelleClasse;
+    public int getIdClasse() {
+        return idClasse;
     }
 
     public void setIdClasse(int idClasse) {
         this.idClasse = idClasse;
     }
 
+    public String getLibelleClasse() {
+        return libelleClasse;
+    }
+
     public void setLibelleClasse(String libelleClasse) {
         this.libelleClasse = libelleClasse;
+    }
+
+    public int getIdProfesseurClasse() {
+        return idProfesseurClasse;
+    }
+
+    public void setIdProfesseurClasse(int idProfesseurClasse) {
+        this.idProfesseurClasse = idProfesseurClasse;
     }
     
 }

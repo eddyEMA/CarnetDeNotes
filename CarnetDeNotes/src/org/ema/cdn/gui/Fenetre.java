@@ -6,26 +6,29 @@
 
 package org.ema.cdn.gui;
 
+import java.awt.Color;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JButton;
 
 /**
  *
  * @author eddy
  */
-public class Fenetre {
+public class Fenetre extends JFrame{
     public Fenetre(){
-        JFrame fenetre = new JFrame();
-        Onglet classe = new Onglet();
-        Onglet matiere = new Onglet();
+        this.setTitle("Connexion à l'application Carnet de Note Electronique");
+        this.setSize(700,400);
+        this.setLocationRelativeTo(null);
+        this.setUndecorated(false);
+        this.setResizable(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.getContentPane().setBackground(Color.red);
+        Panneau monPanneau = new Panneau();
+        monPanneau.setBackground(Color.white);
+        this.setContentPane(monPanneau);
         
-        fenetre.add(classe.tabbedPane);
-        fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        fenetre.setSize(400,300);
-        fenetre.setVisible(true);
+        this.setVisible(true);
         
-        fenetre.add(matiere.tabbedPane);
-        fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        fenetre.setSize(400,300);
-        fenetre.setVisible(true);
     }
 }

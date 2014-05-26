@@ -5,14 +5,20 @@
  */
 
 package org.ema.cdn.metier;
-
+import java.util.Date;
 /**
  *
  * @author Eddy
  */
 public class Professeur extends Personne{
-    public Professeur(String nomPersonne, String prenomPersonne){
-        this.nom = nomPersonne;
-        this.prenom = prenomPersonne;
+    public Professeur(String nomProfesseur, String prenomProfesseur, Date datedeNaissanceProfesseur, String identifiantProfesseur, String motDePasseProfesseur, int idMatiereProfesseur){
+        this.nom = nomProfesseur;
+        this.prenom = prenomProfesseur;
+        this.dateDeNaissancePersonne = datedeNaissanceProfesseur;
+        this.identifiantPersonne = identifiantProfesseur;
+        this.motDePasse = motDePasseProfesseur;
+        this.idMatiereProfesseur = idMatiereProfesseur;
+        this.idClasseEleve = 20;
+        this.idTypePersonne = 1;
     }
 }

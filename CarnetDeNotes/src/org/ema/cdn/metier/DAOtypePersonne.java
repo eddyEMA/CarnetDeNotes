@@ -9,7 +9,6 @@ package org.ema.cdn.metier;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,28 +16,28 @@ import java.util.logging.Logger;
  *
  * @author eddy
  */
-public class DAOmatiere extends DAO<Matiere>{
-    public Matiere chercher(int id) {
-        Matiere maMatiere = new Matiere();
+public class DAOtypePersonne extends DAO<TypePersonne>{
+        public TypePersonne chercher(int id) {
+        TypePersonne monTypePersonne = new TypePersonne();
         try {
-            resultat = this.connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM cdn.Matiere WHERE idMatiere =" + id);
+            resultat = this.connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM cdn.TypePersonne WHERE idType =" + id);
             if (resultat.first()){
-                maMatiere = new Matiere(resultat.getString("libelleMatiere")); 
-                maMatiere.setIdMatiere(resultat.getInt("idMatiere"));
+                monTypePersonne = new TypePersonne(resultat.getString("libelleType")); 
+                monTypePersonne.setIdTypePersonne(resultat.getInt("idType"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(DAOpersonne.class.getName()).log(Level.SEVERE, null, ex);
         } 
-        return maMatiere; 
+        return monTypePersonne; 
     }
-    public boolean creer(Matiere monObjet) {
+    public boolean creer(TypePersonne monObjet) {
         try {
             Statement statement = this.connection.createStatement();
-           requeteSQL = "INSERT INTO cdn.Matiere (libelleMatiere) " + "VALUES('" + monObjet.getLibelleMatiere() + "')";
+           requeteSQL = "INSERT INTO cdn.TypePersonne (libelleType) " + "VALUES('" + monObjet.getLibelleTypePersonne() + "')";
            statement.executeUpdate(requeteSQL, statement.RETURN_GENERATED_KEYS);
            resultat = statement.getGeneratedKeys();
            if (resultat.next()){
-               monObjet.setIdMatiere(resultat.getInt(1));
+               monObjet.setIdTypePersonne(resultat.getInt(1));
            }
          } catch (SQLException ex) {
             Logger.getLogger(DAOpersonne.class.getName()).log(Level.SEVERE, null, ex);
@@ -46,9 +45,9 @@ public class DAOmatiere extends DAO<Matiere>{
         }
         return true;
     }
-    public boolean mettreAjour(Matiere monObjet){
+    public boolean mettreAjour(TypePersonne monObjet){
         try {
-            requeteSQL = "UPDATE cdn.Matiere SET libelleMatiere='" + monObjet.getLibelleMatiere() + "' WHERE idMatiere=" + monObjet.getIdMatiere();
+            requeteSQL = "UPDATE cdn.TypePersonne SET libelleType='" + monObjet.getLibelleTypePersonne() + "' WHERE idType=" + monObjet.getIdTypePersonne();
             this.connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate(requeteSQL);
         } catch (SQLException ex) {
             Logger.getLogger(DAOpersonne.class.getName()).log(Level.SEVERE, null, ex);
@@ -56,9 +55,9 @@ public class DAOmatiere extends DAO<Matiere>{
         }
         return true;
     }
-    public boolean supprimer(Matiere monObjet){
+    public boolean supprimer(TypePersonne monObjet){
         try {
-           requeteSQL = "DELETE FROM `cdn`.`Matiere` WHERE `Matiere`.`idMatiere` = " + monObjet.getIdMatiere();
+           requeteSQL = "DELETE FROM `cdn`.`TypePersonne` WHERE `TypePersonne`.`idType` = " + monObjet.getIdTypePersonne();
            this.connection.createStatement().execute(requeteSQL);
         } catch (SQLException ex) {
             Logger.getLogger(DAOpersonne.class.getName()).log(Level.SEVERE, null, ex);
