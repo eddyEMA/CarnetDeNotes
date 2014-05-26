@@ -11,5 +11,7 @@ package org.ema.cdn.gui;
  * @author eddy
  */
 public class FenetreLogin {
-    
+    public FenetreLogin(){
+        
+    }
 }

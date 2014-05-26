@@ -16,10 +16,12 @@ import java.util.*;
  * @author eddy
  */
 
-public abstract class DAO {
+public abstract class DAO<Type> {
     public Connection connection = AccesBDD.connectionBDD();
-    public abstract Object chercher();
-    public abstract Object creer();
-    public abstract Object mettreAjour();
-    public abstract Object supprimer();
+    protected ResultSet resultat;
+    protected String requeteSQL;
+    public abstract Type chercher(int id);
+    public abstract boolean creer(Type monObjet);
+    public abstract boolean mettreAjour(Type monObjet); //DAO obj
+    public abstract boolean supprimer(Type monObjet);
 }

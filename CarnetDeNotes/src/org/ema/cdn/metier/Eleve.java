@@ -5,51 +5,20 @@
  */
 
 package org.ema.cdn.metier;
+import java.util.Date;
 
 /**
  *
  * @author Eddy
  */
-public class Eleve {
-    private int INE;
-    private String nomEleve;
-    private String prenomEleve;
-    private String dateDeNaissanceEleve;
-    private Classe classeEleve;
-    
-    public int getINE() {
-        return INE;
+public class Eleve extends Personne{
+    public Eleve(String nomEleve, String prenomEleve, Date datedeNaissanceEleve, String identifiantEleve, String motDePasseEleve, int idMatiereEleve){
+        this.nom = nomEleve;
+        this.prenom = prenomEleve;
+        this.dateDeNaissancePersonne = datedeNaissanceEleve;
+        this.identifiantPersonne = identifiantEleve;
+        this.motDePasse = motDePasseEleve;
+        this.idMatiereProfesseur = idMatiereEleve;
+        this.idTypePersonne = 2;
     }
-
-    public String getNomEleve() {
-        return nomEleve;
-    }
-
-    public String getPrenomEleve() {
-        return prenomEleve;
-    }
-
-    public String getDateDeNaissanceEleve() {
-        return dateDeNaissanceEleve;
-    }
-
-    public void setINE(int INE) {
-        this.INE = INE;
-    }
-
-    public void setNomEleve(String nomEleve) {
-        this.nomEleve = nomEleve;
-    }
-
-    public void setPrenomEleve(String prenomEleve) {
-        this.prenomEleve = prenomEleve;
-    }
-
-    public void setDateDeNaissanceEleve(String dateDeNaissanceEleve) {
-        this.dateDeNaissanceEleve = dateDeNaissanceEleve;
-    }
-
-
-    
-    
 }
