@@ -5,8 +5,15 @@
  */
 
 package org.ema.cdn.metier;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Eddy
@@ -57,13 +64,24 @@ public class Main {
 //        daoClasse.mettreAjour(maClasseTestInsert);
 //        daoClasse.supprimer(maClasseTestInsert);
         
-          DAO<TypePersonne> daoTypePersonne = new DAOtypePersonne();
-          TypePersonne maTypePersonneTest = daoTypePersonne.chercher(2);
-          TypePersonne maTypePersonneTestInsert = new TypePersonne("Chien");
-          daoTypePersonne.creer(maTypePersonneTestInsert);
-          maTypePersonneTestInsert.setLibelleTypePersonne("Chat");
-          daoTypePersonne.mettreAjour(maTypePersonneTestInsert);
-          daoTypePersonne.supprimer(maTypePersonneTestInsert);
+//          DAO<TypePersonne> daoTypePersonne = new DAOtypePersonne();
+//          TypePersonne maTypePersonneTest = daoTypePersonne.chercher(2);
+//          TypePersonne maTypePersonneTestInsert = new TypePersonne("Chien");
+//          daoTypePersonne.creer(maTypePersonneTestInsert);
+//          maTypePersonneTestInsert.setLibelleTypePersonne("Chat");
+//          daoTypePersonne.mettreAjour(maTypePersonneTestInsert);
+//          daoTypePersonne.supprimer(maTypePersonneTestInsert);
+          
+        Connection maConnection = AccesBDD.connectionBDD();
+        ResultSet resultat;
+        try {
+            resultat = maConnection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM cdn.Personne WHERE idPersonne=1");
+            if(resultat.first()){
+                System.out.println(resultat.getBlob("photoPersonne"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 }
