@@ -80,7 +80,7 @@ if [ -z "$SONAR_RUNNER_HOME" ] ; then
 fi
 
 # check that the SONAR_RUNNER_HOME has been correctly set
-if [ ! -f "$SONAR_RUNNER_HOME/lib/sonar-runner-dist-2.3.jar" ] ; then
+if [ ! -f "$SONAR_RUNNER_HOME/lib/sonar-runner-dist-2.4" ] ; then
   echo '$SONAR_RUNNER_HOME' does not point to a valid installation directory: $SONAR_RUNNER_HOME
   exit 1
 fi

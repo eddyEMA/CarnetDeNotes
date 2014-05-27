@@ -22,8 +22,7 @@ public class DAOpersonne extends DAO<Personne>{
             if (resultat.first()){
                 if (resultat.getInt("idTypePersonne") == 1) {
                          maPersonne = new Professeur(resultat.getString("nomPersonne"), resultat.getString("prenomPersonne"), resultat.getDate("dateDeNaissancePersonne"), resultat.getString("identifiantPersonne"), resultat.getString("motDePassePersonne"), resultat.getInt("idMatiereProfesseur"));   
-                        }
-                else if (resultat.getInt("idTypePersonne") == 2) {
+                }else if (resultat.getInt("idTypePersonne") == 2){
                         maPersonne = new Eleve(resultat.getString("nomPersonne"), resultat.getString("prenomPersonne"), resultat.getDate("dateDeNaissancePersonne"), resultat.getString("identifiantPersonne"), resultat.getString("motDePassePersonne"), resultat.getInt("idClasseEleve"));
                 }
                 maPersonne.setIdPersonne(resultat.getInt("idPersonne"));
