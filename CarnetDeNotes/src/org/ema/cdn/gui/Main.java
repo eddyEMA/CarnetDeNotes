@@ -14,6 +14,6 @@ import java.awt.Color;
  */
 public class Main {
      public static void main(String[] args){
-     Fenetre interfaceLogin = new Fenetre();
+     Fenetre interfaceLogin = new FenetreLogin();
      }
 }

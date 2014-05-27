@@ -15,17 +15,16 @@ import java.awt.Image;
 import java.io.File;
 import java.io.EOFException;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-
-/**
- *
- * @author eddy
- */
+import org.ema.cdn.metier.AccesBDD;
 
 /**
  *
@@ -47,10 +46,27 @@ public class Panneau extends JPanel {
       g.drawString("Identifiant  :  ", 300, 120);
       g.drawString("Mot de passe :  ", 300, 170);
       
-      JTextArea monTexte = new JTextArea(5,10);
-      
+      JTextArea monTexte = new JTextArea();
+      JTextArea monTexteBis = new JTextArea();
+      monTexte.setBounds(410,105,150,20);
+      monTexteBis.setBounds(410, 155, 150, 20);
+      //monTexte.append("  ");
       //monTexte.setBackground(Color.red);
-      this.add(new JScrollPane(monTexte));
+      this.add(monTexte);
+      this.add(monTexteBis);
+      
+//              Connection maConnection = AccesBDD.connectionBDD();
+//        ResultSet resultat;
+//        Image maPhoto = null;
+//        try {
+//            resultat = maConnection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM cdn.Personne WHERE idPersonne=1");
+//            if(resultat.first()){
+//                maPhoto = (Image) resultat.getBlob("photoPersonne");
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(org.ema.cdn.metier.Main.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
       try {
           Image img = ImageIO.read(new File("logo.jpg"));
           g.drawImage(img, 50, 90,200,200, this);
