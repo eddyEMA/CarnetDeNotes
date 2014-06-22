@@ -72,16 +72,22 @@ public class Main {
 //          daoTypePersonne.mettreAjour(maTypePersonneTestInsert);
 //          daoTypePersonne.supprimer(maTypePersonneTestInsert);
           
-        Connection maConnection = AccesBDD.connectionBDD();
-        ResultSet resultat;
-        try {
-            resultat = maConnection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM cdn.Personne WHERE idPersonne=1");
-            if(resultat.first()){
-                System.out.println(resultat.getBlob("photoPersonne"));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+//        Connection maConnection = AccesBDD.connectionBDD();
+//        ResultSet resultat;
+//        try {
+//            resultat = maConnection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM cdn.Personne WHERE idPersonne=1");
+//            if(resultat.first()){
+//                System.out.println(resultat.getBlob("photoPersonne"));
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//          DAO<Cours> daoCours = new DAOcours();
+//          Cours monCours = daoCours.chercher(2);
+//          Cours monCoursTestInsert = new Cours("Jeudi", 10, 11, 5, 4, 2);
+//          daoCours.creer(monCoursTestInsert);
+//          monCoursTestInsert.setHeureDebutCours(23);
+//          daoCours.mettreAjour(monCoursTestInsert);
+//          daoCours.supprimer(monCoursTestInsert);   
     }
 }

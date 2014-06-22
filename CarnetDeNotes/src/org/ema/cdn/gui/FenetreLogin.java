@@ -19,7 +19,7 @@ public class FenetreLogin extends Fenetre{
         this.setSize(700,400);
         this.setLocationRelativeTo(null);
         this.setUndecorated(false);
-        this.setResizable(true);
+        this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(Color.red);
         Panneau monPanneau = new Panneau();

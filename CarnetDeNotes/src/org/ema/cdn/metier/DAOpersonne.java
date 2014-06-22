@@ -35,8 +35,9 @@ public class DAOpersonne extends DAO<Personne>{
     public boolean creer(Personne monObjet) {
         String patternDate = "yyyy-MM-dd";
         SimpleDateFormat formatter = new SimpleDateFormat(patternDate);
+        Statement statement = null ;
         try {
-            Statement statement = this.connection.createStatement();
+           statement = this.connection.createStatement();
            requeteSQL = "INSERT INTO cdn.Personne ( nomPersonne, prenomPersonne, dateDeNaissancePersonne, identifiantPersonne, motDePassePersonne, idMatiereProfesseur, idClasseEleve, idTypePersonne) " + "VALUES(" + "'" + monObjet.getNom() + "', '" + monObjet.getPrenom() + "', '" + formatter.format(monObjet.getDateDeNaissancePersonne()) + "', '" + monObjet.getIdentifiantPersonne() + "', " + monObjet.getMotDePasse() + ", " + monObjet.getIdMatiereProfesseur() + ", " + monObjet.getIdClasseEleve() + ", " + monObjet.getIdTypePersonne() + ')';
            statement.executeUpdate(requeteSQL, statement.RETURN_GENERATED_KEYS);
            resultat = statement.getGeneratedKeys();
@@ -47,6 +48,10 @@ public class DAOpersonne extends DAO<Personne>{
             Logger.getLogger(DAOpersonne.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
+        finally{
+            statement.close();
+        }
+        
         return true;
     }
     public boolean mettreAjour(Personne monObjet){

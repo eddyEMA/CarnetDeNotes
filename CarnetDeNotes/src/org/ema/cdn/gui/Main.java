@@ -16,6 +16,5 @@ public class Main {
      public static void main(String[] args){
 //     Fenetre interfaceLogin = new FenetreLogin();
      Fenetre interfaceProf = new FenetreProfesseur();
-
      }
 }
