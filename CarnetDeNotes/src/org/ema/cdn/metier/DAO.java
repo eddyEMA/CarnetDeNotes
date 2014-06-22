@@ -6,22 +6,48 @@
 
 package org.ema.cdn.metier;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.*;
 /**
  *
  * @author eddy
  */
 
-public abstract class DAO<Type> {
-    public Connection connection = AccesBDD.connectionBDD();
-    protected ResultSet resultat;
-    protected String requeteSQL;
-    public abstract Type chercher(int id);
-    public abstract boolean creer(Type monObjet);
-    public abstract boolean mettreAjour(Type monObjet); //DAO obj
-    public abstract boolean supprimer(Type monObjet);
+/**
+ *
+ * @author eddy
+ * @param <T>
+ */
+public abstract class DAO<T> {
+    private Connection connection = AccesBDD.connectionBDD();
+    private ResultSet resultat;
+    private String requeteSQL;
+    public abstract T chercher(int id);
+    public abstract boolean creer(T monObjet);
+    public abstract boolean mettreAjour(T monObjet);
+    public abstract boolean supprimer(T monObjet);
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
+
+    public ResultSet getResultat() {
+        return resultat;
+    }
+
+    public void setResultat(ResultSet resultat) {
+        this.resultat = resultat;
+    }
+
+    public String getRequeteSQL() {
+        return requeteSQL;
+    }
+
+    public void setRequeteSQL(String requeteSQL) {
+        this.requeteSQL = requeteSQL;
+    }
+    
 }

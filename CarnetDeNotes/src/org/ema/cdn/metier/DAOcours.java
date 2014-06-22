@@ -17,53 +17,69 @@ import java.util.logging.Logger;
  * @author eddy
  */
 public class DAOcours extends DAO<Cours>{
+     @Override
      public Cours chercher(int id) {
         Cours monCours = new Cours();
         try {
-            resultat = this.connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM cdn.Cours WHERE idCours =" + id);
-            if (resultat.first()){
-                monCours = new Cours(resultat.getString("jourCours"), resultat.getInt("heureDebutCours"), resultat.getInt("heureFinCours"), resultat.getInt("idMatiereCours"), resultat.getInt("idClasseCours"), resultat.getInt("idProfesseurCours")); 
-                monCours.setIdCours(resultat.getInt("idCours"));
+            this.setResultat(this.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM cdn.Cours WHERE idCours =" + id));
+            if (this.getResultat().first()){
+                monCours = new Cours(this.getResultat().getString("jourCours"), this.getResultat().getInt("heureDebutCours"), this.getResultat().getInt("heureFinCours"), this.getResultat().getInt("idMatiereCours"), this.getResultat().getInt("idClasseCours"), this.getResultat().getInt("idProfesseurCours")); 
+                monCours.setIdCours(this.getResultat().getInt("idCours"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(DAOpersonne.class.getName()).log(Level.SEVERE, null, ex);
         } 
         return monCours; 
     }
+//------------------------------------------------------------------------------
+     @Override
     public boolean creer(Cours monObjet) {
+        Statement statement = null;
+        String virgule = "', '";
         try {
-            Statement statement = this.connection.createStatement();
-           requeteSQL = "INSERT INTO cdn.Cours (jourCours, heureDebutCours, heureFinCours, idMatiereCours, idClasseCours, idProfesseurCours) " + "VALUES('" + monObjet.getJourCours()+ "', '" + monObjet.getHeureDebutCours() + "', '" + monObjet.getHeureFinCours() + "', '" + monObjet.getIdMatiereCours() + "', '" + monObjet.getIdClasseCours() + "', '" + monObjet.getIdProfesseurCours() + "')";
-           statement.executeUpdate(requeteSQL, statement.RETURN_GENERATED_KEYS);
-           resultat = statement.getGeneratedKeys();
-           if (resultat.next()){
-               monObjet.setIdCours(resultat.getInt(1));
+           statement = this.getConnection().createStatement();
+           this.setRequeteSQL("INSERT INTO cdn.Cours (jourCours, heureDebutCours, heureFinCours, idMatiereCours, idClasseCours, idProfesseurCours) " + "VALUES('" + monObjet.getJourCours()+ virgule + monObjet.getHeureDebutCours() + virgule + monObjet.getHeureFinCours() + virgule + monObjet.getIdMatiereCours() + virgule + monObjet.getIdClasseCours() + virgule + monObjet.getIdProfesseurCours() + "')");
+           statement.executeUpdate(this.getRequeteSQL(), statement.RETURN_GENERATED_KEYS);
+           this.setResultat(statement.getGeneratedKeys());
+           if (this.getResultat().next()){
+               monObjet.setIdCours(this.getResultat().getInt(1));
            }
          } catch (SQLException ex) {
             Logger.getLogger(DAOpersonne.class.getName()).log(Level.SEVERE, null, ex);
             return false;
+        }finally{
+            try {
+                if(statement != null){
+                    statement.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOpersonne.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return true;
     }
+//------------------------------------------------------------------------------
+     @Override
     public boolean mettreAjour(Cours monObjet){
         try {
-            requeteSQL = "UPDATE cdn.Cours SET jourCours='" + monObjet.getJourCours()+ "', heureDebutCours='" + monObjet.getHeureDebutCours() + "', heureFinCours='" + monObjet.getHeureFinCours() + "', idMatiereCours='" + monObjet.getIdMatiereCours() + "', idClasseCours='" + monObjet.getIdClasseCours() + "', idProfesseurCours='" + monObjet.getIdProfesseurCours() +  "' WHERE idCours=" + monObjet.getIdCours();
-            this.connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate(requeteSQL);
+            this.setRequeteSQL("UPDATE cdn.Cours SET jourCours='" + monObjet.getJourCours()+ "', heureDebutCours='" + monObjet.getHeureDebutCours() + "', heureFinCours='" + monObjet.getHeureFinCours() + "', idMatiereCours='" + monObjet.getIdMatiereCours() + "', idClasseCours='" + monObjet.getIdClasseCours() + "', idProfesseurCours='" + monObjet.getIdProfesseurCours() +  "' WHERE idCours=" + monObjet.getIdCours());
+            this.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate(this.getRequeteSQL());
         } catch (SQLException ex) {
             Logger.getLogger(DAOpersonne.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         return true;
     }
+//------------------------------------------------------------------------------
+     @Override
     public boolean supprimer(Cours monObjet){
         try {
-           requeteSQL = "DELETE FROM `cdn`.`Cours` WHERE `Cours`.`idCours` = " + monObjet.getIdCours();
-           this.connection.createStatement().execute(requeteSQL);
+           this.setRequeteSQL("DELETE FROM `cdn`.`Cours` WHERE `Cours`.`idCours` = " + monObjet.getIdCours());
+           this.getConnection().createStatement().execute(this.getRequeteSQL());
         } catch (SQLException ex) {
             Logger.getLogger(DAOpersonne.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
-        monObjet = null;
         return true; 
     }
 }

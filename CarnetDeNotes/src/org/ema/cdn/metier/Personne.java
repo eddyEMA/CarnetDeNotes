@@ -11,15 +11,15 @@ import java.util.Date;
  * @author eddy
  */
 public class Personne {
-    protected String nom;
-    protected String prenom;
-    protected int idPersonne;
-    protected String identifiantPersonne;
-    protected Date dateDeNaissancePersonne;
-    protected String motDePasse = null;
-    protected int idMatiereProfesseur = -1;
-    protected int idClasseEleve = -1;
-    protected int idTypePersonne;
+    private String nom;
+    private String prenom;
+    private int idPersonne;
+    private String identifiantPersonne;
+    private Date dateDeNaissancePersonne;
+    private String motDePasse = null;
+    private int idMatiereProfesseur = -1;
+    private int idClasseEleve = -1;
+    private int idTypePersonne;
 
     public Personne(){
     }

@@ -8,10 +8,7 @@ package org.ema.cdn.metier;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.*;
 
 /**
  *
@@ -19,20 +16,15 @@ import java.util.*;
  */
 public class AccesBDD {
     private static Connection connection;
-//    Statement statement;
-//    ResultSet result;
-    
-    public AccesBDD(){
-    }
     
 //------------------------------------------------------------------------------
-    public static Connection connectionBDD(){
+    public static final Connection connectionBDD(){
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             connection = DriverManager.getConnection("jdbc:mysql://localhost/cdn?" + "user=application&password=application");
         }
-        catch(Exception e){
-            System.out.println("Connection Impossible");
+        catch(ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e){
+            //nothing to do
         }
         return connection;
     }

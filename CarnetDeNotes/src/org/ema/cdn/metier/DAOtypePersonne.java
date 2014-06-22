@@ -17,53 +17,68 @@ import java.util.logging.Logger;
  * @author eddy
  */
 public class DAOtypePersonne extends DAO<TypePersonne>{
+        @Override
         public TypePersonne chercher(int id) {
         TypePersonne monTypePersonne = new TypePersonne();
         try {
-            resultat = this.connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM cdn.TypePersonne WHERE idType =" + id);
-            if (resultat.first()){
-                monTypePersonne = new TypePersonne(resultat.getString("libelleType")); 
-                monTypePersonne.setIdTypePersonne(resultat.getInt("idType"));
+            this.setResultat(this.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM cdn.TypePersonne WHERE idType =" + id));
+            if (this.getResultat().first()){
+                monTypePersonne = new TypePersonne(this.getResultat().getString("libelleType")); 
+                monTypePersonne.setIdTypePersonne(this.getResultat().getInt("idType"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(DAOpersonne.class.getName()).log(Level.SEVERE, null, ex);
         } 
         return monTypePersonne; 
     }
+//------------------------------------------------------------------------------
+        @Override
     public boolean creer(TypePersonne monObjet) {
+        Statement statement = null;
         try {
-            Statement statement = this.connection.createStatement();
-           requeteSQL = "INSERT INTO cdn.TypePersonne (libelleType) " + "VALUES('" + monObjet.getLibelleTypePersonne() + "')";
-           statement.executeUpdate(requeteSQL, statement.RETURN_GENERATED_KEYS);
-           resultat = statement.getGeneratedKeys();
-           if (resultat.next()){
-               monObjet.setIdTypePersonne(resultat.getInt(1));
+           statement = this.getConnection().createStatement();
+           this.setRequeteSQL("INSERT INTO cdn.TypePersonne (libelleType) " + "VALUES('" + monObjet.getLibelleTypePersonne() + "')");
+           statement.executeUpdate(this.getRequeteSQL(), statement.RETURN_GENERATED_KEYS);
+           this.setResultat(statement.getGeneratedKeys());
+           if (this.getResultat().next()){
+               monObjet.setIdTypePersonne(this.getResultat().getInt(1));
            }
          } catch (SQLException ex) {
             Logger.getLogger(DAOpersonne.class.getName()).log(Level.SEVERE, null, ex);
             return false;
+        }finally{
+            try {
+                if(statement != null){
+                    statement.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOpersonne.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return true;
     }
+//------------------------------------------------------------------------------
+        @Override
     public boolean mettreAjour(TypePersonne monObjet){
         try {
-            requeteSQL = "UPDATE cdn.TypePersonne SET libelleType='" + monObjet.getLibelleTypePersonne() + "' WHERE idType=" + monObjet.getIdTypePersonne();
-            this.connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate(requeteSQL);
+            this.setRequeteSQL("UPDATE cdn.TypePersonne SET libelleType='" + monObjet.getLibelleTypePersonne() + "' WHERE idType=" + monObjet.getIdTypePersonne());
+            this.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate(this.getRequeteSQL());
         } catch (SQLException ex) {
             Logger.getLogger(DAOpersonne.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         return true;
     }
+//------------------------------------------------------------------------------
+        @Override
     public boolean supprimer(TypePersonne monObjet){
         try {
-           requeteSQL = "DELETE FROM `cdn`.`TypePersonne` WHERE `TypePersonne`.`idType` = " + monObjet.getIdTypePersonne();
-           this.connection.createStatement().execute(requeteSQL);
+           this.setRequeteSQL("DELETE FROM `cdn`.`TypePersonne` WHERE `TypePersonne`.`idType` = " + monObjet.getIdTypePersonne());
+           this.getConnection().createStatement().execute(this.getRequeteSQL());
         } catch (SQLException ex) {
             Logger.getLogger(DAOpersonne.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
-        monObjet = null;
         return true; 
     }
 }
