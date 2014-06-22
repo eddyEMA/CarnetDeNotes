@@ -20,12 +20,10 @@ public class TableauProf {
     public TableauProf(){
         //dataProf = new Object();
         for(int i=0; i<2;i++){
-            dataProf[i][0]= " ";
             dataProf[i][1]= " ";
-        }
-        
+            dataProf[i][2]= " ";
+        } 
         titreTabProf = new String[] {"Nom", "Prénom", "Epreuve", "Moyenne"};
-        
     }
 //------------------------------------------------------------------------------
     public JTable CreerJTableProf(){

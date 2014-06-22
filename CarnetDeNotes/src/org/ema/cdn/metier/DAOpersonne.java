@@ -37,6 +37,7 @@ public class DAOpersonne extends DAO<Personne>{
     public boolean creer(Personne monObjet) {
         String patternDate = "yyyy-MM-dd";
         SimpleDateFormat formatter = new SimpleDateFormat(patternDate);
+<<<<<<< HEAD
         Statement statement = null;
         try {
            statement = this.getConnection().createStatement();
@@ -45,6 +46,16 @@ public class DAOpersonne extends DAO<Personne>{
            this.setResultat(statement.getGeneratedKeys());
            if (this.getResultat().next()){
                monObjet.setIdPersonne(this.getResultat().getInt(1));
+=======
+        Statement statement = null ;
+        try {
+           statement = this.connection.createStatement();
+           requeteSQL = "INSERT INTO cdn.Personne ( nomPersonne, prenomPersonne, dateDeNaissancePersonne, identifiantPersonne, motDePassePersonne, idMatiereProfesseur, idClasseEleve, idTypePersonne) " + "VALUES(" + "'" + monObjet.getNom() + "', '" + monObjet.getPrenom() + "', '" + formatter.format(monObjet.getDateDeNaissancePersonne()) + "', '" + monObjet.getIdentifiantPersonne() + "', " + monObjet.getMotDePasse() + ", " + monObjet.getIdMatiereProfesseur() + ", " + monObjet.getIdClasseEleve() + ", " + monObjet.getIdTypePersonne() + ')';
+           statement.executeUpdate(requeteSQL, statement.RETURN_GENERATED_KEYS);
+           resultat = statement.getGeneratedKeys();
+           if (resultat.next()){
+               monObjet.setIdPersonne(resultat.getInt(1));
+>>>>>>> 936c06f3582cd31b95e838cb0acab0c35f0ced32
            }
          } catch (SQLException ex) {
             Logger.getLogger(DAOpersonne.class.getName()).log(Level.SEVERE, null, ex);
@@ -58,6 +69,10 @@ public class DAOpersonne extends DAO<Personne>{
                 Logger.getLogger(DAOpersonne.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        finally{
+            statement.close();
+        }
+        
         return true;
     }
 //------------------------------------------------------------------------------

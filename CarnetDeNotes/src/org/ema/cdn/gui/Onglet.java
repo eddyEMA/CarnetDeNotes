@@ -13,42 +13,43 @@ import javax.swing.JTable;
  *
  * @author eddy
  */
-public class Onglet {
-    JTabbedPane tabbedPane;
-    
-    public Onglet(int typePersonne){
-        if (typePersonne == 1){
-            creerOngletProf();
-        }else if (typePersonne == 2) {
-            creerOngletEleve();
-        }else{
-            System.out.println("ERROR");
-        }
+public class Onglet extends JTabbedPane{
+   
+    public Onglet(){
+//        if (typePersonne == 1){
+//            creerOngletProf();
+//        }else if (typePersonne == 2) {
+//            creerOngletEleve();
+//        }else{
+//            System.out.println("ERROR");
+//        }
     }
  //------------------------------------------------------------------------------   
-    void creerOngletProf(){
-        
-        TableauProf tabProf = new TableauProf();
-        JTable tabProfbis = tabProf.CreerJTableProf();
-        JTable tabProfbis2 = tabProf.CreerJTableProf();
-        JTable tabProfbis3 = tabProf.CreerJTableProf();
-        
-        tabbedPane = new JTabbedPane();
-        tabbedPane.addTab("INFRES 6", tabProfbis);
-        tabbedPane.addTab("INFRES 5", tabProfbis2);
-        tabbedPane.addTab("INFRES 4", tabProfbis3);
-    }
+//    void creerOngletProf(){
+//        
+//        TableauProf tabProf = new TableauProf();
+//        JTable tabProfbis = tabProf.CreerJTableProf();
+//        JTable tabProfbis2 = tabProf.CreerJTableProf();
+//        JTable tabProfbis3 = tabProf.CreerJTableProf();
+//        
+//        tabbedPane = new JTabbedPane();
+//        tabbedPane.addTab("INFRES 6", tabProfbis);
+//        tabbedPane.addTab("INFRES 5", tabProfbis2);
+//        tabbedPane.addTab("INFRES 4", tabProfbis3);
+//    }
 //------------------------------------------------------------------------------
-    void creerOngletEleve(){
-        
-        TableauEleve tabEleve = new TableauEleve();
-        JTable tabElevebis = tabEleve.CreerJTableEleve();
-        JTable tabElevebis2 = tabEleve.CreerJTableEleve();
-        JTable tabElevebis3 = tabEleve.CreerJTableEleve();
-        
-        tabbedPane = new JTabbedPane();
-        tabbedPane.addTab("INFRES 6", tabElevebis);
-        tabbedPane.addTab("INFRES 5", tabElevebis2);
-        tabbedPane.addTab("INFRES 4", tabElevebis3);
+//    void creerOngletEleve(){
+//        TableauEleve tabEleve = new TableauEleve();
+//        JTable tabElevebis = tabEleve.CreerJTableEleve();
+//        JTable tabElevebis2 = tabEleve.CreerJTableEleve();
+//        JTable tabElevebis3 = tabEleve.CreerJTableEleve();
+//        
+//        tabbedPane = new JTabbedPane();
+//        tabbedPane.addTab("INFRES 6", tabElevebis);
+//        tabbedPane.addTab("INFRES 5", tabElevebis2);
+//        tabbedPane.addTab("INFRES 4", tabElevebis3);
+//    }
+    public void insererTableau(String nomOnglet, TableauProf monTab){
+        this.addTab(nomOnglet, monTab.CreerJTableProf());
     }
 }
