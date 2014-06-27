@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class DAOtypePersonne extends DAO<TypePersonne>{
         @Override
-        public TypePersonne chercher(int id) {
+        public TypePersonne chercher(Object id) {
         TypePersonne monTypePersonne = new TypePersonne();
         try {
             this.setResultat(this.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM cdn.TypePersonne WHERE idType =" + id));

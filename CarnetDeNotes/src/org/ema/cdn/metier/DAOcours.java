@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class DAOcours extends DAO<Cours>{
      @Override
-     public Cours chercher(int id) {
+     public Cours chercher(Object id) {
         Cours monCours = new Cours();
         try {
             this.setResultat(this.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM cdn.Cours WHERE idCours =" + id));

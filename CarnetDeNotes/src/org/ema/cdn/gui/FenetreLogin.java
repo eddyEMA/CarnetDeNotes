@@ -14,6 +14,9 @@ import javax.swing.JFrame;
  * @author eddy
  */
 public class FenetreLogin extends Fenetre{
+    private Panneau monPanneau;
+
+
     public FenetreLogin(){
         this.setTitle("Connexion à l'application Carnet de Note Electronique");
         this.setSize(700,400);
@@ -22,9 +25,12 @@ public class FenetreLogin extends Fenetre{
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(Color.red);
-        Panneau monPanneau = new Panneau();
+        monPanneau = new Panneau();
+        
         //monPanneau.setBackground(Color.white);
         this.setContentPane(monPanneau);
-        this.setVisible(true);
+    }    
+    public Panneau getMonPanneau() {
+        return monPanneau;
     }
 }

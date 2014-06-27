@@ -12,13 +12,14 @@ import java.util.Date;
  * @author Eddy
  */
 public class Eleve extends Personne{
-    public Eleve(String nomEleve, String prenomEleve, Date datedeNaissanceEleve, String identifiantEleve, String motDePasseEleve, int idMatiereEleve){
+    public Eleve(String nomEleve, String prenomEleve, Date datedeNaissanceEleve, String identifiantEleve, String motDePasseEleve, int idClasseEleve, int idTypePersonne){
         setNom(nomEleve);
         setPrenom(prenomEleve);
         setDateDeNaissancePersonne(datedeNaissanceEleve);
         setIdentifiantPersonne(identifiantEleve);
         setMotDePasse(motDePasseEleve);
-        setIdMatiereProfesseur(idMatiereEleve);
-        setIdTypePersonne(idMatiereEleve);
+        setIdClasseEleve(idClasseEleve);
+        setIdTypePersonne(idTypePersonne);
+        setIdMatiereProfesseur(2);
     }
 }
