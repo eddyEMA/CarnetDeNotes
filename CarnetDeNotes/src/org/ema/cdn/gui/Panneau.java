@@ -32,12 +32,17 @@ import javax.swing.BorderFactory;
  */
 public class Panneau extends JPanel { 
   private JButton monBouton = new JButton("Connexion");
+  private JTextArea monTexte = new JTextArea();
+  private JTextArea monTexteBis = new JTextArea();
   public void paintComponent(Graphics g){
-      super.paintComponent(g);
+      initiliase(g);
+  }
+  void initiliase(Graphics g){
+            super.paintComponent(g);
       
       this.setLayout(null);
       monBouton.setBounds(400, 235, 120, 60);
-      monBouton.setBackground(Color.gray);
+      //monBouton.setBackground(Color.BLUE);
       this.add(monBouton);
 
       Font font = new Font("Courier", Font.BOLD, 15);
@@ -46,9 +51,7 @@ public class Panneau extends JPanel {
       g.drawString("Bonjour, veuillez vous identifier pour accéder à l'application", 150, 50);
       g.drawString("Identifiant  :  ", 300, 120);
       g.drawString("Mot de passe :  ", 300, 170);
-      
-      JTextArea monTexte = new JTextArea();
-      JTextArea monTexteBis = new JTextArea();
+
       monTexte.setBounds(409,105,150,20);
       monTexteBis.setBounds(410, 155, 150, 20);
       monTexte.setBorder(BorderFactory.createBevelBorder(1));
@@ -64,6 +67,17 @@ public class Panneau extends JPanel {
       } catch (IOException ex) {
           Logger.getLogger(Panneau.class.getName()).log(Level.SEVERE, null, ex);
       }
-      
-  }               
+  }
+  public JButton getMonBouton(){
+      return this.monBouton;
+  }
+
+    public JTextArea getMonTexte() {
+        return monTexte;
+    }
+
+    public JTextArea getMonTexteBis() {
+        return monTexteBis;
+    }
+  
 }

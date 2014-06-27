@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * @author eddy
  */
 public class DAOepreuve extends DAO<Epreuve>{
-    public Epreuve chercher(int id) {
+    public Epreuve chercher(Object id) {
         Epreuve monEpreuve = new Epreuve();
         try {
             this.setResultat(this.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM cdn.Epreuve WHERE idEpreuve =" + id));

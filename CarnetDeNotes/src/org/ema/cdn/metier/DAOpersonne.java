@@ -15,15 +15,18 @@ import java.util.logging.Logger;
  */
 public class DAOpersonne extends DAO<Personne>{
     @Override
-    public Personne chercher(int id) {
+    public Personne chercher(Object identifiant) {
         Personne maPersonne = new Personne();
         try {
-            this.setResultat(this.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM cdn.personne WHERE idPersonne =" + id));
+            this.setResultat(this.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM cdn.personne WHERE identifiantPersonne ='" + identifiant + '\''));
             if (this.getResultat().first()){
                 if (this.getResultat().getInt("idTypePersonne") == 1) {
                          maPersonne = new Professeur(this.getResultat().getString("nomPersonne"), this.getResultat().getString("prenomPersonne"), this.getResultat().getDate("dateDeNaissancePersonne"), this.getResultat().getString("identifiantPersonne"), this.getResultat().getString("motDePassePersonne"), this.getResultat().getInt("idMatiereProfesseur"));   
                 }else if (this.getResultat().getInt("idTypePersonne") == 2){
-                        maPersonne = new Eleve(this.getResultat().getString("nomPersonne"), this.getResultat().getString("prenomPersonne"), this.getResultat().getDate("dateDeNaissancePersonne"), this.getResultat().getString("identifiantPersonne"), this.getResultat().getString("motDePassePersonne"), this.getResultat().getInt("idClasseEleve"));
+                        maPersonne = new Eleve(this.getResultat().getString("nomPersonne"), this.getResultat().getString("prenomPersonne"), this.getResultat().getDate("dateDeNaissancePersonne"), this.getResultat().getString("identifiantPersonne"), this.getResultat().getString("motDePassePersonne"), this.getResultat().getInt("idClasseEleve"), this.getResultat().getInt("idTypePersonne"));
+                }
+                else{
+                    maPersonne = new Administrateur(this.getResultat().getString("nomPersonne"), this.getResultat().getString("prenomPersonne"), this.getResultat().getDate("dateDeNaissancePersonne"), this.getResultat().getString("identifiantPersonne"), this.getResultat().getString("motDePassePersonne"));
                 }
                 maPersonne.setIdPersonne(this.getResultat().getInt("idPersonne"));
             }
@@ -41,7 +44,7 @@ public class DAOpersonne extends DAO<Personne>{
         Statement statement = null;
         try {
            statement = this.getConnection().createStatement();
-           this.setRequeteSQL("INSERT INTO cdn.Personne ( nomPersonne, prenomPersonne, dateDeNaissancePersonne, identifiantPersonne, motDePassePersonne, idMatiereProfesseur, idClasseEleve, idTypePersonne) " + "VALUES(" + "'" + monObjet.getNom() + "', '" + monObjet.getPrenom() + "', '" + formatter.format(monObjet.getDateDeNaissancePersonne()) + "', '" + monObjet.getIdentifiantPersonne() + "', " + monObjet.getMotDePasse() + ", " + monObjet.getIdMatiereProfesseur() + ", " + monObjet.getIdClasseEleve() + ", " + monObjet.getIdTypePersonne() + ')');
+           this.setRequeteSQL("INSERT INTO cdn.Personne ( nomPersonne, prenomPersonne, dateDeNaissancePersonne, identifiantPersonne, motDePassePersonne, idMatiereProfesseur, idClasseEleve, idTypePersonne) " + "VALUES(" + "'" + monObjet.getNom() + "', '" + monObjet.getPrenom() + "', '" + formatter.format(monObjet.getDateDeNaissancePersonne()) + "', '" + monObjet.getIdentifiantPersonne() + "', '" + monObjet.getMotDePasse() + "', '" + monObjet.getIdMatiereProfesseur() + "', '" + monObjet.getIdClasseEleve() + "', '" + monObjet.getIdTypePersonne() + "')");
            statement.executeUpdate(this.getRequeteSQL(), statement.RETURN_GENERATED_KEYS);
            this.setResultat(statement.getGeneratedKeys());
            if (this.getResultat().next()){

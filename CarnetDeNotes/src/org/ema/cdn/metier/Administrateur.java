@@ -5,20 +5,24 @@
  */
 
 package org.ema.cdn.metier;
+
 import java.util.Date;
+
 /**
  *
- * @author Eddy
+ * @author eddy
  */
-public class Professeur extends Personne{
-    public Professeur(String nomProfesseur, String prenomProfesseur, Date datedeNaissanceProfesseur, String identifiantProfesseur, String motDePasseProfesseur, int idMatiereProfesseur){
+public class Administrateur extends Personne{
+    private static final int IDCLASSEELEVE = 20;
+    private static final int IDCLASSEPROFESSEUR = 20;
+    public Administrateur(String nomProfesseur, String prenomProfesseur, Date datedeNaissanceProfesseur, String identifiantProfesseur, String motDePasseProfesseur){
         setNom(nomProfesseur);
         setPrenom(prenomProfesseur);
         setDateDeNaissancePersonne(datedeNaissanceProfesseur);
         setIdentifiantPersonne(identifiantProfesseur);
         setMotDePasse(motDePasseProfesseur);
-        setIdMatiereProfesseur(idMatiereProfesseur);
-        setIdClasseEleve(1);
-        setIdTypePersonne(1);
+        setIdMatiereProfesseur(IDCLASSEPROFESSEUR);
+        setIdClasseEleve(IDCLASSEELEVE);
+        setIdTypePersonne(3);
     }
 }

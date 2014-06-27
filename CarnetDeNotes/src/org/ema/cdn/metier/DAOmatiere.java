@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class DAOmatiere extends DAO<Matiere>{
     @Override
-    public Matiere chercher(int id) {
+    public Matiere chercher(Object id) {
         Matiere maMatiere = new Matiere();
         try {
             this.setResultat(this.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM cdn.Matiere WHERE idMatiere =" + id));

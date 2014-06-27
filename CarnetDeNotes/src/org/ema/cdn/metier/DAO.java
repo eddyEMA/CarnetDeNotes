@@ -21,7 +21,7 @@ public abstract class DAO<T> {
     private Connection connection = AccesBDD.connectionBDD();
     private ResultSet resultat;
     private String requeteSQL;
-    public abstract T chercher(int id);
+    public abstract T chercher(Object id);
     public abstract boolean creer(T monObjet);
     public abstract boolean mettreAjour(T monObjet);
     public abstract boolean supprimer(T monObjet);

@@ -13,10 +13,10 @@ import java.sql.SQLException;
 /**
  *
  * @author eddy
- */
+ */ 
 public class AccesBDD {
     private static Connection connection;
-    
+
 //------------------------------------------------------------------------------
     public static final Connection connectionBDD(){
         try {
