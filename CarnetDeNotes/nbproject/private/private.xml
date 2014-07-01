@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
+            <file>file:/C:/Users/Dorian/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/util/Main.java</file>
+            <file>file:/C:/Users/Dorian/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/metier/DAOmatiere.java</file>
+            <file>file:/C:/Users/Dorian/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/metier/Eleve.java</file>
+            <file>file:/C:/Users/Dorian/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/metier/DAOpersonne.java</file>
+            <file>file:/C:/Users/Dorian/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/util/GestionEleve.java</file>
+            <file>file:/C:/Users/Dorian/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/util/GestionAdministrateur.java</file>
+            <file>file:/C:/Users/Dorian/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/util/GestionLogin.java</file>
+            <file>file:/C:/Users/Dorian/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/gui/FenetreAdmin.java</file>
+            <file>file:/C:/Users/Dorian/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/gui/FenetreProfesseur.java</file>
+            <file>file:/C:/Users/Dorian/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/gui/FenetreEleve.java</file>
+            <file>file:/C:/Users/Dorian/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/metier/DAOtypePersonne.java</file>
+            <file>file:/C:/Users/Dorian/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/gui/FenetreLogin.java</file>
+            <file>file:/C:/Users/Dorian/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/util/GestionProfesseur.java</file>
             <file>file:/C:/Users/Dorian/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/gui/Fenetre.java</file>
-=======
-            <file>file:/C:/Users/eddy/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/util/GestionAdministrateur.java</file>
-            <file>file:/C:/Users/eddy/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/gui/FenetreEleve.java</file>
-            <file>file:/C:/Users/eddy/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/util/GestionEleve.java</file>
-            <file>file:/C:/Users/eddy/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/util/GestionLogin.java</file>
-            <file>file:/C:/Users/eddy/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/util/GestionProfesseur.java</file>
-            <file>file:/C:/Users/eddy/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/gui/FenetreAdmin.java</file>
-            <file>file:/C:/Users/eddy/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/gui/FenetreProfesseur.java</file>
-            <file>file:/C:/Users/eddy/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/metier/Eleve.java</file>
-            <file>file:/C:/Users/eddy/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/metier/Professeur.java</file>
->>>>>>> origin/master
+            <file>file:/C:/Users/Dorian/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/metier/Administrateur.java</file>
+            <file>file:/C:/Users/Dorian/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/gui/Panneau.java</file>
+            <file>file:/C:/Users/Dorian/Documents/GitHub/CarnetDeNotes/CarnetDeNotes/src/org/ema/cdn/metier/DAOepreuve.java</file>
         </group>
     </open-files>
 </project-private>

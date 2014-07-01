@@ -40,11 +40,12 @@ public class DAOpersonne extends DAO<Personne>{
     public boolean creer(Personne monObjet) {
         String patternDate = "yyyy-MM-dd";
         SimpleDateFormat formatter = new SimpleDateFormat(patternDate);
+        String virgule = "', '";
 
         Statement statement = null;
         try {
            statement = this.getConnection().createStatement();
-           this.setRequeteSQL("INSERT INTO cdn.Personne ( nomPersonne, prenomPersonne, dateDeNaissancePersonne, identifiantPersonne, motDePassePersonne, idMatiereProfesseur, idClasseEleve, idTypePersonne) " + "VALUES(" + "'" + monObjet.getNom() + "', '" + monObjet.getPrenom() + "', '" + formatter.format(monObjet.getDateDeNaissancePersonne()) + "', '" + monObjet.getIdentifiantPersonne() + "', '" + monObjet.getMotDePasse() + "', '" + monObjet.getIdMatiereProfesseur() + "', '" + monObjet.getIdClasseEleve() + "', '" + monObjet.getIdTypePersonne() + "')");
+           this.setRequeteSQL("INSERT INTO cdn.Personne ( nomPersonne, prenomPersonne, dateDeNaissancePersonne, identifiantPersonne, motDePassePersonne, idMatiereProfesseur, idClasseEleve, idTypePersonne) " + "VALUES(" + "'" + monObjet.getNom() + virgule + monObjet.getPrenom() + virgule + formatter.format(monObjet.getDateDeNaissancePersonne()) + virgule + monObjet.getIdentifiantPersonne() + virgule + monObjet.getMotDePasse() + virgule + monObjet.getIdMatiereProfesseur() + virgule + monObjet.getIdClasseEleve() + virgule + monObjet.getIdTypePersonne() + "')");
            statement.executeUpdate(this.getRequeteSQL(), statement.RETURN_GENERATED_KEYS);
            this.setResultat(statement.getGeneratedKeys());
            if (this.getResultat().next()){

@@ -7,13 +7,7 @@
 package org.ema.cdn.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import javax.swing.Box;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -28,45 +22,50 @@ import javax.swing.JTextField;
 public class FenetreAdmin extends Fenetre{
     private JLabel texteNomAdministrateur = new JLabel("Nom : ");
     private JLabel textePrenomAdministrateur = new JLabel("Prenom : "); 
-    private JLabel texteIdentifiantUtilisateur = new JLabel("Login : "); 
-    private JLabel texteIdentifiantUtilisateurModification = new JLabel("Login : ");
-    private JLabel texteTypeUtilisateur = new JLabel("Type d'utilisateur : ");
-    private JLabel texteNomUtilisateur = new JLabel("Nom : ");
-    private JLabel textePrenomUtilisateur = new JLabel("Prenom : ");
-    private JLabel texteMotDePasseUtilisateur = new JLabel("Mot de passe : ");
-    private JLabel texteClasseEleve = new JLabel("Classe : ");
-    private JLabel texteMatiereProf = new JLabel("Matiere : ");
-    private JLabel texteDateDeNaissanceUtilisateur = new JLabel("Date de naissance : ");
-    private JLabel texte = new JLabel("    ");
-    private JButton ajouterUtilisateur;
-    private JButton modifierUtilisateur;
-    private JButton supprimerUtilisateur;
+    private final JLabel texteIdentifiantUtilisateur = new JLabel("Login : "); 
+    private final JLabel texteIdentifiantUtilisateurModification = new JLabel("Login : ");
+    private final JLabel texteTypeUtilisateur = new JLabel("Type d'utilisateur : ");
+    private final JLabel texteNomUtilisateur = new JLabel("Nom : ");
+    private final JLabel textePrenomUtilisateur = new JLabel("Prenom : ");
+    private final JLabel texteMotDePasseUtilisateur = new JLabel("Mot de passe : ");
+    private final JLabel texteClasseEleve = new JLabel("Classe : ");
+    private final JLabel texteMatiereProf = new JLabel("Matiere : ");
+    private final JLabel texteDateDeNaissanceUtilisateur = new JLabel("Date de naissance : ");
+    private final JLabel texte = new JLabel("    ");
+    private final JButton ajouterUtilisateur;
+    private final JButton modifierUtilisateur;
+    private final JButton supprimerUtilisateur;
     private JButton validerAjouter;
     private JButton validerModifier;
     private JButton validerSupprimer;
-    private JButton deconnexion;
+    private final JButton deconnexion;
     private JButton eleve;
     private JButton professeur;
-    private JPanel premierPanel = new JPanel();
-    private JPanel deuxiemePanel = new JPanel();
-    private JPanel troisiemePanel = new JPanel();
-    private JPanel quatriemePanel = new JPanel();
-    private JPanel cinquiemePanel = new JPanel();
-    private JTextField  champsIdentifiant = new JTextField();
-    private JTextField  champsIdentifiantModification = new JTextField();
-    private JTextField  champsNomUtilisateur = new JTextField();
-    private JTextField  champsPrenomUtilisateur = new JTextField();
-    private JTextField  champsMotDePasseUtilisateur = new JTextField();
-    private JTextField  champsClasseEleve = new JTextField();
-    private JTextField  champsMatiereProfesseur = new JTextField();
-    private JTextField  champsDateDeNaissance = new JTextField();
-    private JTextField  champsModification = new JTextField();
-    private JComboBox choixModification = new JComboBox();
+    private final JPanel premierPanel = new JPanel();
+    private final JPanel deuxiemePanel = new JPanel();
+    private final JPanel troisiemePanel = new JPanel();
+    private final JPanel quatriemePanel = new JPanel();
+    private final JPanel cinquiemePanel = new JPanel();
+    private final JTextField  champsIdentifiant = new JTextField();
+    private final JTextField  champsIdentifiantModification = new JTextField();
+    private final JTextField  champsNomUtilisateur = new JTextField();
+    private final JTextField  champsPrenomUtilisateur = new JTextField();
+    private final JTextField  champsMotDePasseUtilisateur = new JTextField();
+    private final JTextField  champsClasseEleve = new JTextField();
+    private final JTextField  champsMatiereProfesseur = new JTextField();
+    private final JTextField  champsDateDeNaissance = new JTextField();
+    private final JTextField  champsModification = new JTextField();
+    private final JComboBox choixModification = new JComboBox();
     private String nomAdministrateur;
     private String prenomAdministrateur;
+    private static final int X5 = 5;
+    private static final int X20 = 20;
+    private static final int SIZEWIDTH = 700;
+    private static final int SIZEHEIGHT = 600;
+    
     public FenetreAdmin(){
 
-        premierPanel.setLayout(new GridLayout(5,1));
+        premierPanel.setLayout(new GridLayout(X5,1));
         premierPanel.add(texteNomAdministrateur);
         premierPanel.add(textePrenomAdministrateur);
         
@@ -75,9 +74,9 @@ public class FenetreAdmin extends Fenetre{
         supprimerUtilisateur = creationBoutton("Supprimer utilisateur");
         deconnexion = creationBoutton("Déconnexion");
         
-        deuxiemePanel.setLayout(new GridLayout(20,2));
-        troisiemePanel.setLayout(new GridLayout(20,2));
-        quatriemePanel.setLayout(new GridLayout(20,2));
+        deuxiemePanel.setLayout(new GridLayout(X20,2));
+        troisiemePanel.setLayout(new GridLayout(X20,2));
+        quatriemePanel.setLayout(new GridLayout(X20,2));
 
         deuxiemePanel.add(ajouterUtilisateur);
         
@@ -91,25 +90,25 @@ public class FenetreAdmin extends Fenetre{
         ajouterPanel(premierPanel, deuxiemePanel, troisiemePanel, quatriemePanel, cinquiemePanel);
         initialisationFenetre();
     }
-    public JButton creationBoutton(String nomBoutton){
+    public final JButton creationBoutton(String nomBoutton){
             JButton monBoutton = new JButton(nomBoutton);
             return monBoutton;
   }
-    public void initialisationFenetre(){
+    public final void initialisationFenetre(){
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setTitle("Administrateur");
-    this.setSize(700, 600);
+    this.setSize(SIZEWIDTH, SIZEHEIGHT);
     this.setLocationRelativeTo(null);
     this.setVisible(true);
   }
-    public void ajouterPanel(JPanel premierPanel, JPanel deuxiemePanel, JPanel troisiemePanel, JPanel quatriemePanel, JPanel cinquiemePanel){
+    public final void ajouterPanel(JPanel premierPanel, JPanel deuxiemePanel, JPanel troisiemePanel, JPanel quatriemePanel, JPanel cinquiemePanel){
     this.getContentPane().add(premierPanel, BorderLayout.NORTH);
     this.getContentPane().add(deuxiemePanel, BorderLayout.WEST);
     this.getContentPane().add(troisiemePanel, BorderLayout.CENTER);
     this.getContentPane().add(quatriemePanel, BorderLayout.EAST);
     this.getContentPane().add(cinquiemePanel, BorderLayout.SOUTH);
   }
-    public void ajouterUtilisateur(){
+    public final void ajouterUtilisateur(){
     validerAjouter = creationBoutton("Valider");
     eleve = creationBoutton("Eleve");
     professeur = creationBoutton("Professeur");
@@ -153,7 +152,7 @@ public class FenetreAdmin extends Fenetre{
         validerAjouter.setVisible(etat);
         
     }
-    public void modifierUtilisateur(){
+    public final void modifierUtilisateur(){
     validerModifier = creationBoutton("Valider");
     choixModification.addItem("Nom");
     choixModification.addItem("Prenom");
@@ -180,7 +179,7 @@ public class FenetreAdmin extends Fenetre{
         champsModification.setVisible(etat);   
         validerModifier.setVisible(etat);        
     }
-    public void supprimerUtilisateur(){
+    public final void supprimerUtilisateur(){
     validerSupprimer = creationBoutton("Valider");
     quatriemePanel.add(texteIdentifiantUtilisateur);
     quatriemePanel.add(champsIdentifiant);
@@ -224,7 +223,7 @@ public class FenetreAdmin extends Fenetre{
         premierPanel.removeAll();
         texteNomAdministrateur = new JLabel("Nom : " + nomAdministrateur);
         textePrenomAdministrateur = new JLabel("Prenom : " + prenomAdministrateur);
-        premierPanel.setLayout(new GridLayout(5,1));
+        premierPanel.setLayout(new GridLayout(X5,1));
         premierPanel.add(texteNomAdministrateur);    
         premierPanel.add(textePrenomAdministrateur);
   }

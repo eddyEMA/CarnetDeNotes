@@ -7,10 +7,8 @@
 package org.ema.cdn.gui;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,10 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.text.JTextComponent;
 import org.ema.cdn.metier.Classe;
 
 /**
@@ -36,28 +31,30 @@ public class FenetreProfesseur extends Fenetre{
     private JLabel texteNomProfesseur = new JLabel("Nom : ");
     private JLabel textePrenomProfesseur = new JLabel("Prenom : ");
     private JLabel texteNomMatiere = new JLabel("Matière :");
-    private JButton ajouter;
-    private JButton sauvegarder;
-    private JButton deconnexion;
-    private int compteurX = 0;
-    private Vector<JTable> tableauJTable = new Vector<JTable>();
-    private Vector<DefaultTableModel> tableauModel = new Vector<DefaultTableModel>();
-    private int nombreColone = 3;
-    private JPanel premierPanel;
-    private JPanel deuxiemePanel;
-    private JPanel troisiemePanel;
-    private JPanel quatriemePanel;
-    private Vector<Classe> tableauClasse = new Vector<Classe>();
-    private Vector<Vector> tableauDeClasseEleve = new Vector<Vector>();
+    private final JButton ajouter;
+    private final JButton sauvegarder;
+    private final JButton deconnexion;
+    private final ArrayList<JTable> tableauJTable = new ArrayList<JTable>();
+    private final JPanel premierPanel;
+    private final JPanel deuxiemePanel;
+    private final JPanel troisiemePanel;
+    private final JPanel quatriemePanel;
+    private ArrayList<Classe> tableauClasse = new ArrayList<Classe>();
+    private ArrayList<ArrayList> tableauDeClasseEleve = new ArrayList<ArrayList>();
     private int compteurClasse = 0;
     private JTabbedPane onglets;
-    private Vector nombreDeNote = new Vector();
+    private final ArrayList nombreDeNote = new ArrayList();
+    private static final int X3 = 3;
+    private static final int SIZEX700 = 700;
+    private static final int SIZEY600 = 600;
+    private static final String NNULL = "NULL";
+    
   public FenetreProfesseur(){
     premierPanel = new JPanel();
     deuxiemePanel = new JPanel();
     troisiemePanel = new JPanel();
     quatriemePanel = new JPanel();
-    premierPanel.setLayout(new GridLayout(3,1));
+    premierPanel.setLayout(new GridLayout(X3,1));
     premierPanel.add(texteNomProfesseur);
     premierPanel.add(textePrenomProfesseur);
     premierPanel.add(texteNomMatiere);
@@ -89,13 +86,13 @@ public class FenetreProfesseur extends Fenetre{
       int nombreNoteMax = 0;
       int nombreNote;
       int y=0; 
-      for(int i=0;i<tableauDeClasseEleve.elementAt(compteurClasse).size();i++){
+      for(int i=0;i<tableauDeClasseEleve.get(compteurClasse).size();i++){
           nombreNote =0;
-          if(tableauDeClasseEleve.elementAt(compteurClasse).elementAt(y) == "null"){
+          if(tableauDeClasseEleve.get(compteurClasse).get(y).equals(NNULL)){
               y++;
               i++;
           }        
-          while(tableauDeClasseEleve.elementAt(compteurClasse).elementAt(y) != "null"){
+          while(!tableauDeClasseEleve.get(compteurClasse).get(y).equals(NNULL)){
               y++;
               nombreNote ++;
           }
@@ -106,33 +103,30 @@ public class FenetreProfesseur extends Fenetre{
           
       }
       nombreNoteMax = (nombreNoteMax -2)/2;
-      nombreDeNote.addElement(nombreNoteMax);
+      nombreDeNote.add(nombreNoteMax);
       for(int i=0;i<nombreNoteMax;i++){
             model.addColumn("Note Epreuve");
             model.addColumn("Note Coefficient"); 
       }
 
-      if(tableauDeClasseEleve.elementAt(compteurClasse).elementAt(0) != "null"){
-      for(int i=0;i<(tableauDeClasseEleve.elementAt(compteurClasse).size());i++){
-            Vector tableau = new Vector();
-//            if(tableauDeClasseEleve.elementAt(compteurClasse).elementAt(i) == "null"){
-//              i++;
-//           }
-            while(tableauDeClasseEleve.elementAt(compteurClasse).elementAt(i) != "null"){
-                tableau.addElement(tableauDeClasseEleve.elementAt(compteurClasse).elementAt(i));
-                i++;
-            }
-            model.addRow(tableau);
-            //i++;
-      }
+      if(!tableauDeClasseEleve.get(compteurClasse).get(0).equals(NNULL)){
+        for(int i=0;i<(tableauDeClasseEleve.get(compteurClasse).size());i++){
+              Vector tableau = new Vector();
+
+              while(!tableauDeClasseEleve.get(compteurClasse).get(i).equals(NNULL)){
+                  tableau.add(tableauDeClasseEleve.get(compteurClasse).get(i));
+                  i++;
+              }
+              model.addRow(tableau);
+        }
       }
       model.addColumn("Moyenne");
       int compteurCoefficient = 0;
-      int Moyenne = 0;
+      float moyenne = 0;
       for(int k=0;k<model.getRowCount();k++){
         for (int i=2;i<((nombreNoteMax*2)+2);i++){
           if(model.getValueAt(k, i) != null && model.getValueAt(k, i) != null ){
-          Moyenne += (Integer.parseInt(model.getValueAt(k, i).toString()) * Integer.parseInt(model.getValueAt(k, i+1).toString()));  
+          moyenne += (Integer.parseInt(model.getValueAt(k, i).toString()) * Integer.parseInt(model.getValueAt(k, i+1).toString()));  
           compteurCoefficient += Integer.parseInt(model.getValueAt(k, i+1).toString());
           }
           else{
@@ -142,13 +136,13 @@ public class FenetreProfesseur extends Fenetre{
           
         }
         if(compteurCoefficient != 0){
-            Moyenne /= compteurCoefficient;
+            moyenne /= compteurCoefficient;
         }
         else{
-            Moyenne = 0;
+            moyenne = 0;
         }
-        model.setValueAt(Moyenne, k, model.getColumnCount()-1);
-        Moyenne = 0;
+        model.setValueAt(moyenne, k, model.getColumnCount()-1);
+        moyenne = 0;
         compteurCoefficient = 0;
       }
       
@@ -164,25 +158,25 @@ public class FenetreProfesseur extends Fenetre{
         JScrollPane tableauScrollPane = new JScrollPane(tableauJTable.get(numeroOnglet));
         return tableauScrollPane;
   }
-  public JTabbedPane creationJTabbedPane(){
+  public final JTabbedPane creationJTabbedPane(){
       JTabbedPane mesOnglets = new JTabbedPane();
       for(int i=0;i<tableauClasse.size();i++){
-          mesOnglets.addTab(tableauClasse.elementAt(i).getLibelleClasse(),creationJScrollPane(i));
+          mesOnglets.addTab(tableauClasse.get(i).getLibelleClasse(),creationJScrollPane(i));
       }
       return mesOnglets;
   } 
-  public JButton creationBoutton(String nomBoutton){
+  public final JButton creationBoutton(String nomBoutton){
       JButton monBoutton = new JButton(nomBoutton);
       return monBoutton;
   }
-  public void initialisationFenetre(){
+  public final void initialisationFenetre(){
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setTitle("Gestion des elèves");
-    this.setSize(700, 600);
+    this.setSize(SIZEX700, SIZEY600);
     this.setLocationRelativeTo(null);
     this.setVisible(true);
   }
-  public void ajouterPanel(JPanel premierPanel, JPanel deuxiemePanel, JPanel troisiemePanel, JPanel quatriemePanel){
+  public final void ajouterPanel(JPanel premierPanel, JPanel deuxiemePanel, JPanel troisiemePanel, JPanel quatriemePanel){
     this.getContentPane().add(premierPanel, BorderLayout.NORTH);
     this.getContentPane().add(deuxiemePanel, BorderLayout.CENTER);
     this.getContentPane().add(troisiemePanel, BorderLayout.SOUTH);
@@ -195,7 +189,7 @@ public class FenetreProfesseur extends Fenetre{
     textePrenomProfesseur = new JLabel("Prenom : " + prenomProfesseur);
     texteNomMatiere = new JLabel("Matière : " + matiereProfesseur);
     
-    premierPanel.setLayout(new GridLayout(3,1));
+    premierPanel.setLayout(new GridLayout(X3,1));
     premierPanel.add(texteNomProfesseur);    
     premierPanel.add(textePrenomProfesseur);
     premierPanel.add(texteNomMatiere);
@@ -224,20 +218,19 @@ public class FenetreProfesseur extends Fenetre{
   public JButton getDeconnexion() {
         return deconnexion;
     }
-  public void setTableauClasse(Vector<Classe> tableauClasse) {
+  public void setTableauClasse(ArrayList<Classe> tableauClasse) {
         this.tableauClasse = tableauClasse;
     }
-  public void setTableauDeClasseEleve(Vector<Vector> tableauDeClasseEleve) {
+  public void setTableauDeClasseEleve(ArrayList<ArrayList> tableauDeClasseEleve) {
         this.tableauDeClasseEleve = tableauDeClasseEleve;
     }
-  public Vector<JTable> getTableauJTable() {
+  public ArrayList<JTable> getTableauJTable() {
         return tableauJTable;
     }
   public JTabbedPane getOnglets() {
         return onglets;
     }   
-    public Vector getNombreDeNote() {
+    public ArrayList getNombreDeNote() {
         return nombreDeNote;
     }
-  
 }

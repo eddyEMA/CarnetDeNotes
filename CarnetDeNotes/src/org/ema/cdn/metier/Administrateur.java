@@ -15,6 +15,7 @@ import java.util.Date;
 public class Administrateur extends Personne{
     private static final int IDCLASSEELEVE = 20;
     private static final int IDCLASSEPROFESSEUR = 20;
+    private static final int IDTYPEPERSONNE = 3;
     public Administrateur(String nomProfesseur, String prenomProfesseur, Date datedeNaissanceProfesseur, String identifiantProfesseur, String motDePasseProfesseur){
         setNom(nomProfesseur);
         setPrenom(prenomProfesseur);
@@ -23,6 +24,6 @@ public class Administrateur extends Personne{
         setMotDePasse(motDePasseProfesseur);
         setIdMatiereProfesseur(IDCLASSEPROFESSEUR);
         setIdClasseEleve(IDCLASSEELEVE);
-        setIdTypePersonne(3);
+        setIdTypePersonne(IDTYPEPERSONNE);
     }
 }

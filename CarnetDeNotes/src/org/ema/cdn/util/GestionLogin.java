@@ -12,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
 import org.ema.cdn.gui.*;
 import org.ema.cdn.metier.*;
 /**
@@ -20,24 +19,24 @@ import org.ema.cdn.metier.*;
  * @author eddy
  */
 public class GestionLogin {
-    FenetreLogin interfaceLogin;
-    private Connection connection = AccesBDD.connectionBDD();
+    private final FenetreLogin interfaceLogin;
+    private final Connection connection = AccesBDD.connectionBDD();
     private ResultSet resultat;
-    private String requeteSQL;  
+    private static final int IDTYPE = 3;
 
     public GestionLogin(){
      interfaceLogin = new FenetreLogin();
-     
-     //---------------Pour tester---------------------------//
-     interfaceLogin.getMonPanneau().getMonTexte().setText("joel.vlasak");
-     interfaceLogin.getMonPanneau().getMonTexteBis().setText("cisco");
-      
      interfaceLogin.setVisible(true);
-     interfaceLogin.getMonPanneau().getMonBouton().addActionListener(new ActionListener() {
+    }
+    
+    public void ecouteBouton(){
+        interfaceLogin.getMonPanneau().getMonBouton().addActionListener(new ActionListener() {
+        @Override
         public void actionPerformed(ActionEvent e) {
           String identifiantRentre = (String) interfaceLogin.getMonPanneau().getMonTexte().getText();
           String motDePasseRentre = (String) interfaceLogin.getMonPanneau().getMonTexteBis().getText();
           Personne maPersonne = new Personne();
+          if(connection != null){
           try {
             resultat = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM cdn.personne WHERE identifiantPersonne='" + identifiantRentre + '\'');
             if (resultat.first()){
@@ -47,7 +46,7 @@ public class GestionLogin {
                 }else if (resultat.getInt("idTypePersonne") == 2){
                         maPersonne = new Eleve(resultat.getString("nomPersonne"), resultat.getString("prenomPersonne"), resultat.getDate("dateDeNaissancePersonne"), resultat.getString("identifiantPersonne"), resultat.getString("motDePassePersonne"), resultat.getInt("idClasseEleve"), resultat.getInt("idTypePersonne"));
                 }
-                else if (resultat.getInt("idTypePersonne") == 3){
+                else if (resultat.getInt("idTypePersonne") == IDTYPE){
                         maPersonne = new Administrateur(resultat.getString("nomPersonne"), resultat.getString("prenomPersonne"), resultat.getDate("dateDeNaissancePersonne"), resultat.getString("identifiantPersonne"), resultat.getString("motDePassePersonne"));
                 }
                 maPersonne.setIdPersonne(resultat.getInt("idPersonne"));
@@ -62,17 +61,21 @@ public class GestionLogin {
          else{
             if(maPersonne.getIdTypePersonne() == 1){
                 GestionProfesseur gestionProfesseur = new GestionProfesseur((Professeur)maPersonne);
+                gestionProfesseur.ecouteBouton();
                 interfaceLogin.setVisible(false);
             }
             if(maPersonne.getIdTypePersonne()  == 2){
                 GestionEleve gestionEleve = new GestionEleve((Eleve)maPersonne);
+                gestionEleve.ecouteBouton();
                 interfaceLogin.setVisible(false);
             }
-            if(maPersonne.getIdTypePersonne()  == 3){
+            if(maPersonne.getIdTypePersonne()  == IDTYPE){
                 GestionAdministrateur gestionAdmin = new GestionAdministrateur((Administrateur)maPersonne);
+                gestionAdmin.ecouteBoutton();
                 interfaceLogin.setVisible(false);
             }
          }
+        }
         }
     });
     }

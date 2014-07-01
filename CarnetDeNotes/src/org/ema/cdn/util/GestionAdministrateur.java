@@ -22,24 +22,34 @@ import org.ema.cdn.metier.*;
  * @author eddy
  */
 public class GestionAdministrateur {
-    FenetreAdmin interfaceAdministrateur;
+    private final FenetreAdmin interfaceAdministrateur;
     private boolean etatAjouter = false;
     private boolean etatSupprimer = false;
     private boolean etatModifier = false;
     private boolean etatEleve = false;
     private boolean etatProfesseur = false;
-    private Connection connection = AccesBDD.connectionBDD();
+    private final Connection connection = AccesBDD.connectionBDD();
     private ResultSet resultat;
+    private final Administrateur monAdministrateur;
+    private static final int YEAR1 = 1900;
+    private static final int MONTH1 = 6;
+    private static final int DATE1 = 15;
+    
     
     public GestionAdministrateur(Administrateur monAdministrateur){
+        this.monAdministrateur = monAdministrateur;
     interfaceAdministrateur = new FenetreAdmin();
     interfaceAdministrateur.setNomAdministrateur(monAdministrateur.getNom());
     interfaceAdministrateur.setPrenomAdministrateur(monAdministrateur.getPrenom());
     interfaceAdministrateur.actulisationText();
     
-    interfaceAdministrateur.getEleve().addActionListener(new ActionListener() {
+
+   }
+    public void ecouteBoutton(){
+            interfaceAdministrateur.getEleve().addActionListener(new ActionListener() {
+        @Override
         public void actionPerformed(ActionEvent e) {
-        if(etatEleve == false){   
+        if(!etatEleve){   
             interfaceAdministrateur.getTexteNomUtilisateur().setVisible(true);
             interfaceAdministrateur.getChampsNomUtilisateur().setVisible(true);
             interfaceAdministrateur.getTextePrenomUtilisateur().setVisible(true);
@@ -78,8 +88,9 @@ public class GestionAdministrateur {
         }
     });
     interfaceAdministrateur.getProfesseur().addActionListener(new ActionListener() {
+        @Override
         public void actionPerformed(ActionEvent e) {
-        if(etatProfesseur == false){   
+        if(!etatProfesseur){   
             interfaceAdministrateur.getTexteNomUtilisateur().setVisible(true);
             interfaceAdministrateur.getChampsNomUtilisateur().setVisible(true);
             interfaceAdministrateur.getTextePrenomUtilisateur().setVisible(true);
@@ -116,9 +127,10 @@ public class GestionAdministrateur {
         }
     });
     interfaceAdministrateur.getValiderAjouter().addActionListener(new ActionListener() {
+        @Override
         public void actionPerformed(ActionEvent e) {
             DAOpersonne daoPersonne = new DAOpersonne();
-                if(interfaceAdministrateur.getTexteClasseEleve().isVisible() == true){
+                if(interfaceAdministrateur.getTexteClasseEleve().isVisible()){
                     int idClasse = -1;   
                     try {
                         resultat = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT idClasse FROM cdn.classe WHERE libelleClasse='" + interfaceAdministrateur.getChampsClasseEleve().getText() + '\'');
@@ -131,14 +143,13 @@ public class GestionAdministrateur {
                     }              
                     Personne monEleve = new Eleve(interfaceAdministrateur.getChampsNomUtilisateur().getText(),
                     interfaceAdministrateur.getChampsPrenomUtilisateur().getText(),
-                    new Date(1900-1900, 6 -1, 15),
+                    new Date(YEAR1-YEAR1, MONTH1 -1, DATE1),
                     interfaceAdministrateur.getChampsPrenomUtilisateur().getText() + '.' + interfaceAdministrateur.getChampsNomUtilisateur().getText(),
                     interfaceAdministrateur.getChampsMotDePasseUtilisateur().getText(),
                     idClasse,2);
                     daoPersonne.creer(monEleve);
                 }
-                if(interfaceAdministrateur.getTexteMatiereProf().isVisible() == true){
-                    Professeur monProfesseur; 
+                if(interfaceAdministrateur.getTexteMatiereProf().isVisible()){
                     int idMatiere= -1;
                     try {
                         resultat = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT idMatiere FROM cdn.matiere WHERE libelleMatiere='" + interfaceAdministrateur.getChampsMatiereProfesseur().getText() + '\'');
@@ -151,7 +162,7 @@ public class GestionAdministrateur {
                     }   
                     Personne monProf = new Professeur(interfaceAdministrateur.getChampsNomUtilisateur().getText(),
                     interfaceAdministrateur.getChampsPrenomUtilisateur().getText(), 
-                    new Date(1900-1900, 6 -1, 15),
+                    new Date(YEAR1-YEAR1, MONTH1 -1, DATE1),
                     interfaceAdministrateur.getChampsPrenomUtilisateur().getText() + '.' + interfaceAdministrateur.getChampsNomUtilisateur().getText(), 
                     interfaceAdministrateur.getChampsMotDePasseUtilisateur().getText(), 
                     idMatiere);
@@ -178,36 +189,27 @@ public class GestionAdministrateur {
         }
     });
     interfaceAdministrateur.getValiderModifier().addActionListener(new ActionListener() {
+        @Override
         public void actionPerformed(ActionEvent e) {
-            if(etatModifier==true){
+            if(etatModifier){
                 interfaceAdministrateur.rendreVisibleModifier(false);
                 etatModifier = false; 
                 DAOpersonne daoPersonne = new DAOpersonne();
                 Personne maPersonne = daoPersonne.chercher(interfaceAdministrateur.getChampsIdentifiantModification().getText());
-
-                if(interfaceAdministrateur.getChoixModification().getSelectedItem().equals("Nom") == true){
+                if(interfaceAdministrateur.getChoixModification().getSelectedItem().equals("Nom")){
                     maPersonne.setNom(interfaceAdministrateur.getChampsModification().getText());
                 }
-                if(interfaceAdministrateur.getChoixModification().getSelectedItem().equals("Prenom") == true){
+                if(interfaceAdministrateur.getChoixModification().getSelectedItem().equals("Prenom")){
                     maPersonne.setPrenom(interfaceAdministrateur.getChampsModification().getText());
                 }
-                if(interfaceAdministrateur.getChoixModification().getSelectedItem().equals("Date de naissance") == true){
-                    
-                }
-                if(interfaceAdministrateur.getChoixModification().getSelectedItem().equals("Mot de passe") == true){
+                if(interfaceAdministrateur.getChoixModification().getSelectedItem().equals("Mot de passe")){
                    maPersonne.setMotDePasse(interfaceAdministrateur.getChampsModification().getText());
-                }
-                if(interfaceAdministrateur.getChoixModification().getSelectedItem().equals("Classe") == true){
-                    
-                }
-                if(interfaceAdministrateur.getChoixModification().getSelectedItem().equals("Matiere") == true){
-                    
-                }
-                daoPersonne.mettreAjour(maPersonne);
+                }daoPersonne.mettreAjour(maPersonne);
             }
         }
     });
     interfaceAdministrateur.getValiderSupprimer().addActionListener(new ActionListener() {
+        @Override
         public void actionPerformed(ActionEvent e) {
             DAOpersonne daoPersonne = new DAOpersonne();
             daoPersonne.supprimer(daoPersonne.chercher(interfaceAdministrateur.getChampsIdentifiant().getText()));
@@ -216,6 +218,7 @@ public class GestionAdministrateur {
         }
     });
     interfaceAdministrateur.getDeconnexion().addActionListener(new ActionListener() {
+        @Override
         public void actionPerformed(ActionEvent e) {
             interfaceAdministrateur.dispose();
             GestionLogin interfaceLogin = new GestionLogin();
@@ -223,9 +226,9 @@ public class GestionAdministrateur {
         }
     });
     interfaceAdministrateur.getAjouterUtilisateur().addActionListener(new ActionListener() {
+        @Override
         public void actionPerformed(ActionEvent e) {
-            if(etatAjouter == false){
-                //interfaceAdministrateur.rendreVisibleAjouter(true);
+            if(!etatAjouter){
                 interfaceAdministrateur.getEleve().setVisible(true);
                 interfaceAdministrateur.getProfesseur().setVisible(true);
                 etatAjouter = true;
@@ -253,8 +256,9 @@ public class GestionAdministrateur {
         }
     });
     interfaceAdministrateur.getModifierUtilisateur().addActionListener(new ActionListener() {
+        @Override
         public void actionPerformed(ActionEvent e) {
-            if(etatModifier == false){
+            if(!etatModifier){
                 interfaceAdministrateur.rendreVisibleModifier(true);
                 etatModifier = true;
             }
@@ -265,8 +269,9 @@ public class GestionAdministrateur {
         }
     });
     interfaceAdministrateur.getSupprimerUtilisateur().addActionListener(new ActionListener() {
+        @Override
         public void actionPerformed(ActionEvent e) {
-            if(etatSupprimer == false){
+            if(!etatSupprimer){
                 interfaceAdministrateur.rendreVisibleSupprimer(true);
                 etatSupprimer = true;
             }
@@ -276,5 +281,5 @@ public class GestionAdministrateur {
             }
         }
     });
-   }
+    }
 }

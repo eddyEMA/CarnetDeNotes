@@ -18,6 +18,7 @@ import java.util.logging.Logger;
  * @author eddy
  */
 public class DAOepreuve extends DAO<Epreuve>{
+    @Override
     public Epreuve chercher(Object id) {
         Epreuve monEpreuve = new Epreuve();
         try {

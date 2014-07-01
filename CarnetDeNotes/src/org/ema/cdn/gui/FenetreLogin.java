@@ -14,12 +14,13 @@ import javax.swing.JFrame;
  * @author eddy
  */
 public class FenetreLogin extends Fenetre{
-    private Panneau monPanneau;
-
+    private final Panneau monPanneau;
+    private static final int WIDTH1 = 700;
+    private static final int HEIGHT1 = 400;
 
     public FenetreLogin(){
         this.setTitle("Connexion à l'application Carnet de Note Electronique");
-        this.setSize(700,400);
+        this.setSize(WIDTH1, HEIGHT1);
         this.setLocationRelativeTo(null);
         this.setUndecorated(false);
         this.setResizable(false);
@@ -27,7 +28,6 @@ public class FenetreLogin extends Fenetre{
         this.getContentPane().setBackground(Color.red);
         monPanneau = new Panneau();
         
-        //monPanneau.setBackground(Color.white);
         this.setContentPane(monPanneau);
     }    
     public Panneau getMonPanneau() {
