@@ -27,10 +27,7 @@ public class GestionLogin {
     public GestionLogin(){
      interfaceLogin = new FenetreLogin();
      interfaceLogin.setVisible(true);
-    }
-    
-    public void ecouteBouton(){
-        interfaceLogin.getMonPanneau().getMonBouton().addActionListener(new ActionListener() {
+     interfaceLogin.getMonPanneau().getMonBouton().addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
           String identifiantRentre = (String) interfaceLogin.getMonPanneau().getMonTexte().getText();
@@ -79,4 +76,5 @@ public class GestionLogin {
         }
     });
     }
+    
 }

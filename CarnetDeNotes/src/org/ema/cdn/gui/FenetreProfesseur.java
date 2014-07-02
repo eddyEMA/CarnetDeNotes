@@ -47,7 +47,7 @@ public class FenetreProfesseur extends Fenetre{
     private static final int X3 = 3;
     private static final int SIZEX700 = 700;
     private static final int SIZEY600 = 600;
-    private static final String NNULL = "NULL";
+    private static final String NNULL = "null";
     
   public FenetreProfesseur(){
     premierPanel = new JPanel();
@@ -91,7 +91,8 @@ public class FenetreProfesseur extends Fenetre{
           if(tableauDeClasseEleve.get(compteurClasse).get(y).equals(NNULL)){
               y++;
               i++;
-          }        
+          }
+          
           while(!tableauDeClasseEleve.get(compteurClasse).get(y).equals(NNULL)){
               y++;
               nombreNote ++;

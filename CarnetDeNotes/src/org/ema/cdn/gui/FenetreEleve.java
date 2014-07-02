@@ -39,7 +39,7 @@ public class FenetreEleve extends Fenetre{
     private int compteurMatiere = 0;
     private static final int ROWS = 3;
     private static final int WIDTH2 = 700;
-    private static final int HEIGHT2 = 600;
+    private static final int HEIGHT2 = 650;
     
     public FenetreEleve(){
         premierPanel = new JPanel();

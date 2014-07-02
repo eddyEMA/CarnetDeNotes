@@ -16,6 +16,5 @@ package org.ema.cdn.util;
 public class Main {
    public static void main(String[] args){
        GestionLogin interfaceLogin = new GestionLogin();
-       
      }
 }
